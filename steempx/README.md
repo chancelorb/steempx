@@ -20,21 +20,27 @@
 
 ## Project Description
 
-My final project will be a mx of [steemit](https://github.com/user/repo/blob/branch/other_file.md)
+My final project will be a mx of [Steemit](steemit.com) and [500px](https://500px.com/)/[Pinterest](https://pinterest.com/).
+In this case I will cut out the middle man 500px/Pinterest and reward the content creator directly with Steem tokens which are ease to exchange for bitcoin, dollars or other coins.
 
-## Title: Escape-Room
+## Title: Steempx
 
 ## Project Overview
-This a game where the player will try to escape from a locked room by looking for clues, solving puzzles and playing minigames.
-The player will be able to examine items and navigate through the room or house
+This is a platform where photographers can look for inspiration and share there pictures. Because of steems "proof-of-brain" protocol the creator gets rewards via likes and/or donations.
 
 ## Wireframes
 
-Include links to the images of your wireframes.
+*comming soon*
 
 ## Priority Matrix
 
-Include a link to your full the `Time\Priority` Matix.  
+| part | Priority | Estimated Time | Time Invetsted | Actual Time |
+| --- | :---: |  :---: | :---: | :---: |
+| readme | H | 30mins| 10mins | 10mins |
+| post on the Steem blockchain | H | 30hrs| 4hrs | 4hrs |
+| login with Steem | H | 2hrs| - | - |
+| api with node.js | H | 8hrs| - | - |
+| React native app | l | 10hrs| - | - |
 
 ## MVP
 
