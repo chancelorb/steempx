@@ -1,16 +1,11 @@
 # Project Overview
 
 ## Project Schedule
-
-This schedule will be used to keep track of your progress throughout the week and align with our expectations.  
-
-You are **responsible** for scheduling time with your squad to seek approval for each deliverable by the end of the corresponding day, excluding `Saturday` and `Sunday`.
-
 ### Personal Final Project
 
 |  Day | Deliverable |
 |---|---|
-|Day 1: Thu 5/24 | Wireframes, Priority Matrix, Schedule, Time Estimates |
+|Day 1: Thu 5/24 | Wireframes, Priority Matrix, Schedule, Time Estimates, build react app with components |
 |Day 2: Fri 5/25 | Approval\Pseudocode\Actual code\|
 |Day 3: Sat 5/26 | Work on project  |
 |Day 4: Sun 5/27 | Work on project  |
@@ -25,7 +20,7 @@ You are **responsible** for scheduling time with your squad to seek approval for
 
 ## Project Description
 
-Use this section to describe your final project and perhaps any links to relevant sites that help convey the concept and\or functionality.
+My final project will be a mx of [steemit](https://github.com/user/repo/blob/branch/other_file.md)
 
 ## Title: Escape-Room
 
