@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Index from './components/profile/Index';
-import Home from './components/Home';
+import Home from './components/public/Home';
 import steem from 'steem';
 
 class App extends Component {
@@ -19,27 +19,12 @@ class App extends Component {
 
   fetchUser() {
     steem.api.getAccounts(['chanceb'], (err, resp) => {
-      console.log(err, resp)
+      this.setState ({
+        user : {...JSON.parse(resp[0].json_metadata)},
+        loaded : true
+      })
     })
   };
-
-  // steem.api.setOptions({ url: 'https://api.steemit.com' })
-  // steem.api.getAccounts(['chanceb'], (err, result) => {
-  //   this.result = {...JSON.parse(result[0].json_metadata)}
-  //   console.log('touched', result)
-  //   this.loaded = true
-  // })
-
-  // .then(resp => {
-  //     if (!resp.ok) {
-  //       throw Error('oops: ', resp.message);
-  //     }
-  //     return resp.json();
-  //   }).then(data => this.setState ({
-  //       user: data,
-  //       loaded: true
-  //   })).catch(err => console.log(`error: ${err}`))
-  // })
 
   componentDidMount() {
     this.fetchUser()
@@ -48,7 +33,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header
+          user={this.state.user}
+          loaded={this.state.loaded}
+        />
         <Switch>
 
           <Route exact path='/profile' component={(props) => (

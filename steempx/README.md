@@ -32,6 +32,16 @@ This is a platform where photographers can look for inspiration and share there 
 
 *comming soon*
 
+## Technologies
+
+- React js
+- Steem
+- Node js
+- Bootstrap
+- jQuery
+- Google fonts
+
+
 ## Priority Matrix
 
 | part | Priority | Estimated Time | Time Invetsted | Actual Time |

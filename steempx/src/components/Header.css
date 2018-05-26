@@ -1,1 +1,12 @@
 
+.nav-pic{
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  border: solid 1px #000;
+}
+.logo-pic {
+  height: 4em;
+  width: 4em;
+  margin: -1em;
+}
