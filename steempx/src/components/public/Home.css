@@ -1,0 +1,28 @@
+.home-container {
+  margin-top: 3em;
+}
+
+.home {
+  background-image: url('../../assets/dan-gribbin-50368-unsplash.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 30em;
+  border-bottom: solid #000 2px;
+}
+
+.home-text {
+  padding-top: 4em;
+  font-family: 'Monoton', cursive;
+
+}
+
+.home-red {
+  color: #f00;
+}
+.home-green {
+  color: #0f0;
+}
+.home-blue {
+  color: #00f;
+}
