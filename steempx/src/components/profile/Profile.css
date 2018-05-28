@@ -3,3 +3,15 @@
   width: 10em;
   border: solid 1px #000;
 }
+
+.profile-image-container {
+  text-align: right;
+}
+
+.Profile {
+  text-align: left;
+  background-color: #044;
+  padding-top: 2em;
+  padding-bottom: 1em;
+  color: #fff;
+}

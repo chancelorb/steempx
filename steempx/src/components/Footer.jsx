@@ -7,7 +7,7 @@ class Footer extends Component {
     return (
       <div className='footer'>
 
-        <h1>Made By: Chance</h1>
+        <h1>......</h1>
 
       </div>
     );

@@ -1,0 +1,9 @@
+.trending-container {
+  background-color: #fff;
+  color: #000;
+  height: 25em;
+}
+
+.trending-title {
+  padding-top: 3em;
+}

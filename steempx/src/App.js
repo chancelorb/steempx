@@ -11,6 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      curUser: 'xenetics',
       user: [],
       loaded: false
     }
@@ -18,35 +19,72 @@ class App extends Component {
   }
 
   fetchUser() {
-    steem.api.getAccounts(['chanceb'], (err, resp) => {
+    let curUser = (this.state.curUser).length > 1 ? (
+    steem.api.getAccounts([this.state.curUser], (err, resp) => {
       this.setState ({
         user : {...JSON.parse(resp[0].json_metadata)},
         loaded : true
       })
-    })
+    })) : "";
   };
+
+  // fetchHot() {
+  //   steem.api.getDiscussionsByHot(['hot'], function(err, result) {
+  //     console.log("this is the hot fetch", err, result);
+  //   });
+  // }
+
+  fetchDevinfo() {
+    // let query = { limit : 3, tag : "steem" };
+    // steem.api.getTrendingTags("steem", 3, (err, data) => {
+    // 	console.log(err, data);
+    // })
+    steem.api.getStateAsync('trending/steemdev')
+      .then(r => console.log(JSON.stringify(r,null,2)))
+      .catch(console.log)
+  };
+
+  fetchTrending() {
+    steem.api.getStateAsync('trending')
+      .then(data => console.log(JSON.stringify(data)))
+      .catch(console.log)
+  }
 
   componentDidMount() {
     this.fetchUser()
+    // this.fetchHot()
+    this.fetchTrending()
   }
 
   render() {
+    let curUser = (this.state.curUser).length > 1 ? this.state.curUser : "";
+    console.log("ik ben curUser: ", curUser)
     return (
       <div className="App">
         <Header
           user={this.state.user}
           loaded={this.state.loaded}
+          curUser={this.state.curUser}
         />
         <Switch>
 
-          <Route exact path='/profile' component={(props) => (
+          <Route exact path={`/@${curUser}`} component={(props) => (
             <Index
               {...props}
               user={this.state.user}
               loaded={this.state.loaded}
+              curUser={this.state.curUser}
+            /> )} />
+          <Route exact path={`/@${curUser}/:id`} component={(props) => (
+            <Index
+              {...props}
+              user={this.state.user}
+              loaded={this.state.loaded}
+              curUser={this.state.curUser}
             /> )} />
 
-          <Route path='/' component={() => (<Home /> )} />
+          <Route exact path='/' component={() => (<Home /> )} />
+          <Route exact path='/:id' component={() => (<Home /> )} />
 
         </Switch>
         <Footer />

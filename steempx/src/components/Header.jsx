@@ -5,8 +5,9 @@ import logo from '../assets/spLogo.png';
 
 class Header extends Component {
   render() {
-    let userImage = this.props.loaded ? this.props.user.profile.profile_image : "";
-    console.log(userImage);
+    let user = this.props.loaded ? this.props.user.profile : "";
+    let curUser = (this.props.curUser).length > 1 ? this.props.curUser : "";
+    console.log(curUser);
     return (
       <div className='nav-bar'>
 
@@ -17,13 +18,13 @@ class Header extends Component {
           <Link className="navbar-brand logo" to="/"><img src={logo} className='logo-pic' /></Link>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <Link className="nav-item nav-link left active" to="/">Trending <span className="sr-only">(current)</span></Link>
-              <Link className="nav-item nav-link left" to="#">New</Link>
-              <Link className="nav-item nav-link right" to="/profile">Hot</Link>
-              <Link className="nav-item nav-link right" to="#">Promoted</Link>
+              <Link className="nav-item nav-link left active" to="/trending">Trending <span className="sr-only">(current)</span></Link>
+              <Link className="nav-item nav-link left active" to="/new">New</Link>
+              <Link className="nav-item nav-link right active" to="/hot">Hot</Link>
+              <Link className="nav-item nav-link right active" to="/promoted">Promoted</Link>
             </div>
           </div>
-          <Link to='/profile'> <img src={userImage} alt="" className='nav-pic'/></Link>
+          <Link to={`/@${curUser}`}> <img src={user.profile_image} alt="" className='nav-pic'/></Link>
         </nav>
 
       </div>
