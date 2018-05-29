@@ -47,7 +47,7 @@ class Index extends Component {
           </div>
           <Switch>
 
-            <Route exact path={`/@${this.props.curUser}/followers`} component={() => (<Followers /> )} />
+            <Route exact path={`/@${this.props.curUser}/followers`} component={(props) => (<Followers {...props} user={this.props.curUser}/> )} />
             <Route exact path={`/@${this.props.curUser}/following`} component={() => (<Following /> )} />
             <Route exact path={`/@${this.props.curUser}/muted`} component={() => (<Muted /> )} />
             <Route exact path={`/@${this.props.curUser}`} component={() => (<Followers /> )} />

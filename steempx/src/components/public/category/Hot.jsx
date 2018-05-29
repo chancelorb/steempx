@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class Hot extends Component {
   render() {
     return (
-      <div className='hot-container'>
+      <div className='hot-container col-8'>
 
         <h1 className='hot-title'>HOT</h1>
 

@@ -2,12 +2,42 @@ import React, { Component } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import logo from '../assets/spLogo.png';
+import steem from 'steem';
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: ''
+    }
+    this.checkUser = this.checkUser.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  checkUser(e) {
+    console.log("name:", this.state.name)
+    e.preventDefault();
+    steem.api.getAccountsAsync([this.state.name], (err, res) => {
+      let check = res[0] ? true : false;
+      check ? (this.props.subFunc(JSON.parse(res[0].json_metadata))) : (console.log('oepsie...'))
+    })
+  };
+
   render() {
     let user = this.props.loaded ? this.props.user.profile : "";
-    let curUser = (this.props.curUser).length > 1 ? this.props.curUser : "";
-    console.log(curUser);
+    let curUser = (this.props.curUser).length > 1 ?
+    (<Link to={`/@${this.props.curUser}`}> <img src={user.profile_image} alt="" className='nav-pic'/></Link>)
+    :
+    (<form onSubmit={this.checkUser} className="form-group col-2 user-box">
+      <input placeholder='Type username' className="form-control" type="text" name='name' onChange={this.handleInputChange}></input>
+    </form>);
     return (
       <div className='nav-bar'>
 
@@ -24,7 +54,7 @@ class Header extends Component {
               <Link className="nav-item nav-link right active" to="/promoted">Promoted</Link>
             </div>
           </div>
-          <Link to={`/@${curUser}`}> <img src={user.profile_image} alt="" className='nav-pic'/></Link>
+          {curUser}
         </nav>
 
       </div>

@@ -11,11 +11,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      curUser: 'xenetics',
+      curUser: '',
       user: [],
       loaded: false
     }
-
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   fetchUser() {
@@ -50,6 +50,14 @@ class App extends Component {
       .catch(console.log)
   }
 
+  handleLogin(name) {
+    // console.log(name.profile.name)
+    this.setState({
+      curUser: name.profile.name
+    });
+    this.fetchUser();
+  }
+
   componentDidMount() {
     this.fetchUser()
     // this.fetchHot()
@@ -65,6 +73,7 @@ class App extends Component {
           user={this.state.user}
           loaded={this.state.loaded}
           curUser={this.state.curUser}
+          subFunc={this.handleLogin}
         />
         <Switch>
 
@@ -87,7 +96,7 @@ class App extends Component {
           <Route exact path='/:id' component={() => (<Home /> )} />
 
         </Switch>
-        <Footer />
+
       </div>
     );
   }

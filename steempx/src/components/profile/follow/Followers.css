@@ -7,3 +7,8 @@
 .followers-title {
   padding-top: 0;
 }
+.folowers-display {
+  width: auto;
+  border: solid 1px #000;
+  background-color: #999;
+}

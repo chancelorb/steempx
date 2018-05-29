@@ -7,12 +7,11 @@ import Promoted from './category/Promoted';
 import Trending from './category/Trending';
 
 class Home extends Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     user
-  //   }
-  // }
+  constructor(props){
+    super(props);
+
+    this.tagfunc = this.tagfunc.bind(this);
+  }
 
   // handleChange(e) {
 	// 	const value = e.target;
@@ -30,7 +29,16 @@ class Home extends Component {
       console.log('do validate');
     }
   }
+  tagfunc(num, type) {
+    const arr = [];
+    for (let i = 0; i < num; i++) {
+      arr.push(`${type} nr ${i}.`)
+    }
+    return arr
+  }
   render() {
+    const tags = this.tagfunc(25, 'tag');
+    const ads = this.tagfunc(35, 'advertisement')
     return (
       <div className='home-container'>
         <div className='home'>
@@ -40,20 +48,34 @@ class Home extends Component {
           <div className="row">
             <div className="col-3" ></div>
             <div className="form-group col-6 user-box">
-              <input placeholder='Type User Name' className="form-control" type="text" onKeyPress={this.handleKeyPress}></input>
+              <input placeholder='What tag are you looking for?' className="form-control" type="text" onKeyPress={this.handleKeyPress}></input>
             </div>
            </div>
         </div>
-        <Switch>
+        <div className='row home-render'>
+          <div className='col-2 home-side-render'>tags
+            <hr />
+            {tags.map(t => (
+              <div>{t}</div>
+            ))}
+          </div>
+          <Switch>
 
-          <Route exact path='/new' component={() => (<New /> )} />
-          <Route exact path='/hot' component={() => (<Hot /> )} />
-          <Route exact path='/promoted' component={() => (<Promoted /> )} />
-          <Route exact path='/trending' component={() => (<Trending /> )} />
-          <Route exact path='/' component={() => (<New /> )} />
+            <Route exact path='/new' component={() => (<New /> )} />
+            <Route exact path='/hot' component={() => (<Hot /> )} />
+            <Route exact path='/promoted' component={() => (<Promoted /> )} />
+            <Route exact path='/trending' component={() => (<Trending /> )} />
+            <Route path='/' component={() => (<New /> )} />
 
 
-        </Switch>
+          </Switch>
+          <div className='col-2 home-side-render'>ads
+            <hr />
+            {ads.map(a => (
+              <div>{a}</div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
