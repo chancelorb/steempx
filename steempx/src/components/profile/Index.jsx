@@ -5,6 +5,7 @@ import Profile from './Profile';
 import Followers from './follow/Followers';
 import Following from './follow/Following';
 import Muted from './follow/Muted';
+import steem from 'steem';
 
 
 class Index extends Component {
@@ -12,9 +13,22 @@ class Index extends Component {
     super(props);
     this.state = {
       user: this.props.user,
-      loaded: this.props.loaded
+      loaded: this.props.loaded,
+      trendingTags: []
     }
     this.tagfunc = this.tagfunc.bind(this);
+    this.fetchTags = this.fetchTags.bind(this);
+  }
+  fetchTags() {
+    steem.api.getTrendingTagsAsync('', 100)
+      .then(res => {
+        this.setState({
+          trendingTags: res
+        });
+      })
+      .catch(err => {
+        console.log('oopsie', err);
+      })
   }
 
   tagfunc(num, type) {
@@ -24,9 +38,13 @@ class Index extends Component {
     }
     return arr
   }
+  componentDidMount() {
+    this.fetchTags();
+  }
   render() {
-    const tags = this.tagfunc(25, 'tag');
-    const ads = this.tagfunc(35, 'advertisement')
+    const tags = (this.state.trendingTags).length > 1 ? this.state.trendingTags : ["Loading..."];
+    const ads = this.tagfunc(35, 'advertisement');
+    console.log("tester", this.props.curUser)
     let loaded = this.state.loaded ? (<Profile user={this.state.user} loaded={this.state.loaded} curUser={this.props.curUser}/>) : (<h1>Loading...</h1>)
     return (
       <div className='index'>
@@ -42,15 +60,15 @@ class Index extends Component {
           <div className='col-2'>tags
             <hr />
             {tags.map(t => (
-              <div>{t}</div>
+              <div>{t.name}</div>
             ))}
           </div>
           <Switch>
 
-            <Route exact path={`/@${this.props.curUser}/followers`} component={(props) => (<Followers {...props} user={this.props.curUser}/> )} />
-            <Route exact path={`/@${this.props.curUser}/following`} component={() => (<Following /> )} />
+            <Route exact path={`/@${this.props.curUser}/followers`} render={(props) => (<Followers {...props} user={this.props.curUser} /> )} />
+            <Route exact path={`/@${this.props.curUser}/following`} component={(props) => (<Following {...props} user={this.props.curUser} /> )} />
             <Route exact path={`/@${this.props.curUser}/muted`} component={() => (<Muted /> )} />
-            <Route exact path={`/@${this.props.curUser}`} component={() => (<Followers /> )} />
+            <Route exact path={`/@${this.props.curUser}`} render={(props) => (<Followers {...props} user={this.props.curUser} /> )} />
 
           </Switch>
           <div className='col-2'>ads

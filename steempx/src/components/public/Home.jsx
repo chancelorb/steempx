@@ -5,23 +5,30 @@ import New from './category/New';
 import Hot from './category/Hot';
 import Promoted from './category/Promoted';
 import Trending from './category/Trending';
+import steem from 'steem';
 
 class Home extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      trendingTags: []
+    }
 
+    this.fetchTags = this.fetchTags.bind(this);
     this.tagfunc = this.tagfunc.bind(this);
   }
 
-  // handleChange(e) {
-	// 	const value = e.target;
-	// 	this.setState((prevState, props) => ({
-	// 		event: {
-	// 			...prevState.event,
-	// 			[name]: value
-	// 		}
-	// 	}))
-	// }
+  fetchTags() {
+    steem.api.getTrendingTagsAsync('', 100)
+      .then(res => {
+        this.setState({
+          trendingTags: res
+        });
+      })
+      .catch(err => {
+        console.log('oopsie', err);
+      })
+  }
 
   handleKeyPress(e) {
     e.preventDefault();
@@ -36,9 +43,13 @@ class Home extends Component {
     }
     return arr
   }
+  componentDidMount() {
+    this.fetchTags();
+  }
   render() {
-    const tags = this.tagfunc(25, 'tag');
+    // const tags = this.tagfunc(25, 'tag');
     const ads = this.tagfunc(35, 'advertisement')
+    const tags = (this.state.trendingTags).length > 1 ? this.state.trendingTags : ["Loading..."]
     return (
       <div className='home-container'>
         <div className='home'>
@@ -53,10 +64,10 @@ class Home extends Component {
            </div>
         </div>
         <div className='row home-render'>
-          <div className='col-2 home-side-render'>tags
+          <div className='col-2 home-side-render'>trending tags
             <hr />
             {tags.map(t => (
-              <div>{t}</div>
+              <div>{t.name}</div>
             ))}
           </div>
           <Switch>

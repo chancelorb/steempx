@@ -44,11 +44,11 @@ class App extends Component {
       .catch(console.log)
   };
 
-  fetchTrending() {
-    steem.api.getStateAsync('trending')
-      .then(data => console.log(JSON.stringify(data)))
-      .catch(console.log)
-  }
+  // fetchTrending() { ---------------This is in trending!
+  //   steem.api.getStateAsync('trending')
+  //     .then(data => console.log(JSON.stringify(data)))
+  //     .catch(console.log)
+  // }
 
   handleLogin(name) {
     // console.log(name.profile.name)
@@ -61,7 +61,7 @@ class App extends Component {
   componentDidMount() {
     this.fetchUser()
     // this.fetchHot()
-    this.fetchTrending()
+    // this.fetchTrending()
   }
 
   render() {
