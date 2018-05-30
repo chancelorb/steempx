@@ -9,24 +9,50 @@ class Trending extends Component {
     this.state = {
       trending: []
     }
-    this.fetchTrending = this.fetchTrending.bind(this);
+    this.fetchDiscTrending = this.fetchDiscTrending.bind(this);
+    this.addDefaultSrc = this.addDefaultSrc.bind(this)
   }
 
-  fetchTrending() {
-    steem.api.getStateAsync('trending')
-      .then(data => console.log(data))
-      .catch(console.log)
+  fetchDiscTrending() {
+    var query = {
+      tag: 'photography',
+      limit: 100,
+      start_author: 'lada94',
+      start_permlink: 'introduce-youself-steemit'
+    };
+    steem.api.getDiscussionsByTrendingAsync(query)
+      .then(res => {
+        this.setState({
+          trending: res
+        });
+      })
+      .catch(err => {
+        console.log('oopsie', err)
+      })
+  }
+
+  addDefaultSrc(ev){
+    ev.target.src = 'https://www.torbenrick.eu/blog/wp-content/uploads/2017/03/Broken-windows-theory-Applied-to-organizational-culture.jpg'
   }
 
   componentDidMount() {
-    this.fetchTrending()
+    this.fetchDiscTrending();
   }
 
   render() {
+    let trends = (this.state.trending).length > 0 ? this.state.trending : ["not the same"] ;
+    let check = (trends === this.state.trending) ? (trends.map(t => (
+      <div className='post-container' key={t.id}>
+        <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
+        <p>@{t.author} | {t.title}</p>
+      </div>
+    ))) : (<h1>Loading...</h1>)
+    console.log(trends)
     return (
       <div className='trending-container col-8'>
 
         <h1 className='trending-title'>TRENDING</h1>
+        {check}
 
       </div>
     );

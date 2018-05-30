@@ -66,16 +66,16 @@ class Index extends Component {
           <Switch>
 
             <Route exact path={`/@${this.props.curUser}/followers`} render={(props) => (<Followers {...props} user={this.props.curUser} /> )} />
-            <Route exact path={`/@${this.props.curUser}/following`} component={(props) => (<Following {...props} user={this.props.curUser} /> )} />
+            <Route exact path={`/@${this.props.curUser}/following`} render={(props) => (<Following {...props} user={this.props.curUser} /> )} />
             <Route exact path={`/@${this.props.curUser}/muted`} component={() => (<Muted /> )} />
             <Route exact path={`/@${this.props.curUser}`} render={(props) => (<Followers {...props} user={this.props.curUser} /> )} />
 
           </Switch>
           <div className='col-2'>ads
             <hr />
-            {ads.map(a => (
-              <div>{a}</div>
-            ))}
+            <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
+            <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
+            <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
           </div>
 
         </div>

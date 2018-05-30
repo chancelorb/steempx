@@ -30,6 +30,7 @@ class Home extends Component {
       })
   }
 
+
   handleKeyPress(e) {
     e.preventDefault();
     if (e.key === 'Enter') {
@@ -72,19 +73,19 @@ class Home extends Component {
           </div>
           <Switch>
 
-            <Route exact path='/new' component={() => (<New /> )} />
-            <Route exact path='/hot' component={() => (<Hot /> )} />
-            <Route exact path='/promoted' component={() => (<Promoted /> )} />
-            <Route exact path='/trending' component={() => (<Trending /> )} />
-            <Route path='/' component={() => (<New /> )} />
+            <Route exact path='/new' render={(props) => (<New /> )} />
+            <Route exact path='/hot' render={(props) => (<Hot /> )} />
+            <Route exact path='/promoted' render={(props) => (<Promoted /> )} />
+            <Route exact path='/trending' render={() => (<Trending /> )} />
+            <Route path='/' render={(props) => (<New /> )} />
 
 
           </Switch>
           <div className='col-2 home-side-render'>ads
             <hr />
-            {ads.map(a => (
-              <div>{a}</div>
-            ))}
+            <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
+            <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
+            <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
           </div>
         </div>
       </div>

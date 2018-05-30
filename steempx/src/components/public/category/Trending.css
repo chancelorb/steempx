@@ -3,6 +3,16 @@
   color: #000;
   height: 25em;
 }
+.home-pic {
+  width: 25em;
+  height: 10em;
+  border: solid 1px #000;
+}
+
+.post-container {
+  border: solid 0.5px #000;
+  margin-top: 2em;
+}
 
 /* .trending-title {
   padding-top: 3em;
