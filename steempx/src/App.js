@@ -92,8 +92,8 @@ class App extends Component {
               curUser={this.state.curUser}
             /> )} />
 
-          <Route exact path='/' component={() => (<Home /> )} />
-          <Route exact path='/:id' component={() => (<Home /> )} />
+          <Route exact path='/' component={(props) => (<Home  {...props} curUser={this.state.curUser}/> )} />
+          <Route exact path='/:id' component={(props) => (<Home {...props} curUser={this.state.curUser} /> )} />
 
         </Switch>
 

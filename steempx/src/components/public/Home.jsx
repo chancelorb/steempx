@@ -65,7 +65,7 @@ class Home extends Component {
            </div>
         </div>
         <div className='row home-render'>
-          <div className='col-2 home-side-render'>trending tags
+          <div className='col-2 home-side-render'>Trending Tags
             <hr />
             {tags.map(t => (
               <div>{t.name}</div>
@@ -81,7 +81,7 @@ class Home extends Component {
 
 
           </Switch>
-          <div className='col-2 home-side-render'>ads
+          <div className='col-2 home-side-render'>Links
             <hr />
             <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
             <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>

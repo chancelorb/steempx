@@ -15,7 +15,7 @@ class Following extends Component {
   }
 
   fetchFollowing() {
-    steem.api.getFollowing(this.state.user, this.state.r, 'blog', 100, (err, res) => {
+    steem.api.getFollowing(this.state.user, this.state.r, 'blog', 1000, (err, res) => {
       console.log(this.props.user, res)
       this.setState({
         followers: res
