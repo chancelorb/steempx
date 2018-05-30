@@ -11,11 +11,11 @@ class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
-      trendingTags: []
+      trendingTags: [],
+      theTag: 'photography'
     }
-
-    this.fetchTags = this.fetchTags.bind(this);
-    this.tagfunc = this.tagfunc.bind(this);
+    this.submitFunc = this.submitFunc.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   fetchTags() {
@@ -29,27 +29,22 @@ class Home extends Component {
         console.log('oopsie', err);
       })
   }
-
-
-  handleKeyPress(e) {
+  handleInputChange(e) {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  }
+  submitFunc(e) {
     e.preventDefault();
-    if (e.key === 'Enter') {
-      console.log('do validate');
-    }
+
   }
-  tagfunc(num, type) {
-    const arr = [];
-    for (let i = 0; i < num; i++) {
-      arr.push(`${type} nr ${i}.`)
-    }
-    return arr
-  }
+
+
   componentDidMount() {
     this.fetchTags();
   }
   render() {
-    // const tags = this.tagfunc(25, 'tag');
-    const ads = this.tagfunc(35, 'advertisement')
     const tags = (this.state.trendingTags).length > 1 ? this.state.trendingTags : ["Loading..."]
     return (
       <div className='home-container'>
@@ -59,9 +54,9 @@ class Home extends Component {
           </div>
           <div className="row">
             <div className="col-3" ></div>
-            <div className="form-group col-6 user-box">
-              <input placeholder='What tag are you looking for?' className="form-control" type="text" onKeyPress={this.handleKeyPress}></input>
-            </div>
+            <form onSubmit={this.submitFunc} className="form-group col-6 user-box">
+              <input placeholder='What tag are you looking for?' className="form-control" type="text" name='theTag' onKeyPress={this.handleInputChange}></input>
+            </form>
            </div>
         </div>
         <div className='row home-render'>
@@ -73,11 +68,11 @@ class Home extends Component {
           </div>
           <Switch>
 
-            <Route exact path='/new' render={(props) => (<New /> )} />
-            <Route exact path='/hot' render={(props) => (<Hot /> )} />
-            <Route exact path='/promoted' render={(props) => (<Promoted /> )} />
-            <Route exact path='/trending' render={() => (<Trending /> )} />
-            <Route path='/' render={(props) => (<New /> )} />
+            <Route exact path='/new' render={(props) => (<New {...props} theTag={this.state.theTag} /> )} />
+            <Route exact path='/hot' render={(props) => (<Hot {...props} theTag={this.state.theTag} /> )} />
+            <Route exact path='/promoted' render={(props) => (<Promoted {...props} theTag={this.state.theTag}/> )} />
+            <Route exact path='/trending' render={(props) => (<Trending {...props} theTag={this.state.theTag}/> )} />
+            <Route path='/' render={(props) => (<New {...props} theTag={this.state.theTag} /> )} />
 
 
           </Switch>

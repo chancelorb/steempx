@@ -15,7 +15,7 @@ class Hot extends Component {
 
   fetchHot() {
     var query = {
-      tag: 'photography',
+      tag: this.props.theTag,
       limit: 100,
       start_author: 'lada94',
       start_permlink: 'introduce-youself-steemit'
@@ -29,7 +29,7 @@ class Hot extends Component {
       })
       .catch(err => {
         console.log('oopsie', err)
-      })
+      });
   }
   addDefaultSrc(ev){
     ev.target.src = 'https://www.torbenrick.eu/blog/wp-content/uploads/2017/03/Broken-windows-theory-Applied-to-organizational-culture.jpg'
@@ -37,7 +37,9 @@ class Hot extends Component {
   componentDidMount() {
     this.fetchHot()
   }
+
   render() {
+    console.log("in hot: ", this.props.theTag)
     let hot = (this.state.hot).length > 0 ? this.state.hot : ["not the same"] ;
     let check = (hot === this.state.hot) ? (hot.map(t => (
       <div className='post-container' key={t.id}>
