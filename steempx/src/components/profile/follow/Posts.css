@@ -7,3 +7,13 @@
 .muted-title {
   padding-top: 0;
 }
+
+.steempx-posts{
+  background-color: #eee;
+  margin-top: 3em;
+}
+
+.steemit-posts{
+  background-color: #ddd;
+  margin-top: 3em;
+}

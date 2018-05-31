@@ -15,17 +15,15 @@ class Hot extends Component {
 
   fetchHot() {
     var query = {
-      tag: this.props.theTag,
-      limit: 100,
-      start_author: 'lada94',
-      start_permlink: 'introduce-youself-steemit'
+      tag: `${this.props.theTag}`,
+      limit: 100
     };
+    console.log("inside func", this.props.theTag)
     steem.api.getDiscussionsByHotAsync(query)
       .then(res => {
         this.setState({
           hot: res
         });
-        console.log(res)
       })
       .catch(err => {
         console.log('oopsie', err)
@@ -37,17 +35,20 @@ class Hot extends Component {
   componentDidMount() {
     this.fetchHot()
   }
+  componentWillReceiveProps() {
+    this.fetchHot()
+  }
 
   render() {
     console.log("in hot: ", this.props.theTag)
-    let hot = (this.state.hot).length > 0 ? this.state.hot : ["not the same"] ;
+    let hot = (this.state.hot).length > 0 ? this.state.hot : ["not ready"] ;
     let check = (hot === this.state.hot) ? (hot.map(t => (
       <div className='post-container' key={t.id}>
         <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
         <p>@{t.author} | {t.title}</p>
       </div>
     ))) : (<h1>Loading...</h1>)
-    console.log(hot)
+    console.log(this.props.theTag, hot)
     return (
       <div className='hot-container col-8'>
 

@@ -9,14 +9,19 @@ class Profile extends Component {
     return (
       <div>
       <div className='Profile row'>
-        <div className='col-3'></div>
+        <div className='col-2'></div>
         <div className='col-3 profile-image-container' >
           <img src={this.props.user.profile.profile_image} className='profile-image' />
         </div>
-        <div className='profile-info col-6'>
-          <h3>Name: {this.props.user.profile.name}</h3>
-          <h3>Location: {this.props.user.profile.location}</h3>
-          <h3>About: {this.props.user.profile.about}</h3>
+        <div className='profile-info-disc col-2'>
+          <h3 >Name:  </h3>
+          <h3 >Location: </h3>
+          <h3 >About:</h3>
+        </div>
+        <div className='profile-info col-5'>
+          <h3 >{this.props.user.profile.name}</h3>
+          <h3 >{this.props.user.profile.location}</h3>
+          <h3 >{this.props.user.profile.about}</h3>
         </div>
       </div>
       </div>

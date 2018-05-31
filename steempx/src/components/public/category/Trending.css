@@ -4,14 +4,16 @@
   height: 25em;
 }
 .home-pic {
-  width: 25em;
-  height: 10em;
+  width: auto;
+  max-width: 45em;
+  min-width: 10em;
+  height: 15em;
   border: solid 1px #000;
 }
 
 .post-container {
-  border: solid 0.5px #000;
   margin-top: 2em;
+  border-bottom: 0.01em solid #000;
 }
 
 /* .trending-title {

@@ -39,7 +39,12 @@ class Home extends Component {
     e.preventDefault();
 
   }
-
+  tagFunc(tag) {
+    console.log(tag)
+    this.setState({
+      theTag: tag
+    })
+  }
 
   componentDidMount() {
     this.fetchTags();
@@ -63,7 +68,7 @@ class Home extends Component {
           <div className='col-2 home-side-render'>Trending Tags
             <hr />
             {tags.map(t => (
-              <div>{t.name}</div>
+              <div className='side-tags'onClick={() => this.tagFunc(t.name)}>{t.name}</div>
             ))}
           </div>
           <Switch>

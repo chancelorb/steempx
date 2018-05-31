@@ -16,6 +16,10 @@
   font-family: 'Monoton', cursive;
 
 }
+.side-tags:hover{
+  cursor: pointer;
+  background-color: #eee;
+}
 
 .home-red {
   color: #f00;

@@ -2,6 +2,11 @@
 
 .App {
   text-align: center;
+  font-family: 'Cutive Mono', monospace;
+  letter-spacing: 0.1em
+}
+h1 {
+  font-family: 'Orbitron', sans-serif;
 }
 
 .App-logo {

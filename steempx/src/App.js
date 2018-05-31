@@ -16,6 +16,7 @@ class App extends Component {
       loaded: false
     }
     this.handleLogin = this.handleLogin.bind(this);
+    this.createPost = this.createPost.bind(this);
   }
 
   fetchUser() {
@@ -57,6 +58,15 @@ class App extends Component {
     });
     this.fetchUser();
   }
+  createPost(post) {
+    fetch('http://localhost:3001/api/pic/new', {
+      method: 'POST',
+      body: JSON.stringify(post),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+  }
 
   componentDidMount() {
     this.fetchUser()
@@ -90,6 +100,7 @@ class App extends Component {
               user={this.state.user}
               loaded={this.state.loaded}
               curUser={this.state.curUser}
+              onSubmit={this.createPost}
             /> )} />
 
           <Route exact path='/' component={(props) => (<Home  {...props} curUser={this.state.curUser}/> )} />
