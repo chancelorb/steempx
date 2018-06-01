@@ -15,10 +15,8 @@ class Trending extends Component {
 
   fetchDiscTrending() {
     var query = {
-      tag: 'photography',
-      limit: 100,
-      start_author: 'lada94',
-      start_permlink: 'introduce-youself-steemit'
+      tag: `${this.props.theTag}`,
+      limit: 100
     };
     steem.api.getDiscussionsByTrendingAsync(query)
       .then(res => {
@@ -37,6 +35,9 @@ class Trending extends Component {
 
   componentDidMount() {
     this.fetchDiscTrending();
+  }
+  componentWillReceiveProps() {
+    this.fetchDiscTrending()
   }
 
   render() {

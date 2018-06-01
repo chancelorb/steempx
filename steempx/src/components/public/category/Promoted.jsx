@@ -15,10 +15,8 @@ class Promoted extends Component {
 
 fetchPromoted() {
   var query = {
-    tag: 'photography',
-    limit: 100,
-    start_author: 'lada94',
-    start_permlink: 'introduce-youself-steemit'
+    tag: `${this.props.theTag}`,
+    limit: 100
   };
   steem.api.getDiscussionsByPromotedAsync(query)
     .then(res => {
@@ -38,6 +36,10 @@ fetchPromoted() {
   componentDidMount() {
     this.fetchPromoted()
   }
+  componentWillReceiveProps() {
+    this.fetchPromoted()
+  }
+
   render() {
     let promoted = (this.state.promoted).length > 0 ? this.state.promoted : ["not the same"] ;
     let check = (promoted === this.state.promoted) ? (promoted.map(t => (
