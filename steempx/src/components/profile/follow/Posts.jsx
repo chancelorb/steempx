@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Posts.css';
 import { Link } from 'react-router-dom';
 import steem from 'steem';
+const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/";
 
 class Posts extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Posts extends Component {
   }
 
   fetchThisPosts(user) {
-    fetch(`http://localhost:3001/api/pic/user/${user}`)
+    fetch(`${BASE_URL}api/pic/user/${user}`)
       .then(resp => {
         if (!resp.ok) {
           throw Error('oops: ', resp.message);
@@ -49,7 +50,7 @@ class Posts extends Component {
       })).catch(err => console.log(`error: ${err}`))
   }
   deleteThisPost(id) {
-    fetch(`http://localhost:3001/api/pic/${id}`, {
+    fetch(`${BASE_URL}api/pic/${id}`, {
       method: 'DELETE'
     })
     .then(resp => {

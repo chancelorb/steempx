@@ -48,9 +48,7 @@ class Index extends Component {
           </Switch>
           <div className='col-2'>Links
             <hr />
-            <Link to={`/`}> <div>Home</div></Link>
-            <Link to={`/`}> <div>Home</div></Link>
-            <Link to={`/`}> <div>Home</div></Link>
+            <div className='side-tags'><Link to={`/`}> <div>Home</div></Link></div>
           </div>
 
         </div>

@@ -35,6 +35,12 @@
   padding-top: 3em;
 }
 
-.home-side-render {
+.home-side-render a {
   padding-top: 2em;
+  text-decoration: none;
+  color: #000;
+}
+
+.home-links:hover {
+  background-color: #eee;
 }

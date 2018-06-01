@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Index from './components/profile/Index';
 import Home from './components/public/Home';
 import steem from 'steem';
+const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/"
 
 class App extends Component {
   constructor(props) {
@@ -59,7 +60,7 @@ class App extends Component {
     this.fetchUser();
   }
   createPost(post) {
-    fetch('http://localhost:3001/api/pic/new', {
+    fetch(`${BASE_URL}api/pic/new`, {
       method: 'POST',
       body: JSON.stringify(post),
       headers: {

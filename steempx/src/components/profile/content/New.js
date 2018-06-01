@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './New.css';
 import { Link } from 'react-router-dom';
 import steem from 'steem';
+const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/";
 
 class New extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class New extends Component {
       '',
       'steempx',
       this.props.curUser,
-      `this-is-a-steempx-post`,
+      `this-is-a-steempx-post-made-by-${this.props.curUser}`,
       this.state.post.title,
       `![](${this.state.post.img_url}) Made With SteemPX`,
       { tags: [`${this.state.post.tag}`] },

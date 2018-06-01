@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './New.css';
 import { Link } from 'react-router-dom';
 import steem from 'steem';
+const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/";
 
 class New extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class New extends Component {
   }
   // steempx
   fetchThisPosts() {
-    fetch('http://localhost:3001/api/pic')
+    fetch(`${BASE_URL}api/pic`)
       .then(resp => {
         if (!resp.ok) {
           throw Error('oops: ', resp.message);

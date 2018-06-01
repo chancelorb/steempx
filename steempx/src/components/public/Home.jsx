@@ -37,6 +37,7 @@ class Home extends Component {
   }
   submitFunc(e) {
     e.preventDefault();
+    this.fetchTags();
 
   }
   tagFunc(tag) {
@@ -83,9 +84,10 @@ class Home extends Component {
           </Switch>
           <div className='col-2 home-side-render'>Links
             <hr />
-            <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
-            <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
-            <Link to={`/@${this.props.curUser}`}> <div>Blog</div></Link>
+            <div className='side-tags' ><Link to={`/@${this.props.curUser}/followers`}> <div>Followers</div></Link></div>
+            <div className='side-tags' ><Link to={`/@${this.props.curUser}/following`}> <div>Following</div></Link></div>
+            <div className='side-tags' ><Link to={`/@${this.props.curUser}/posts`}> <div>My Posts</div></Link></div>
+            <div className='side-tags' ><Link to={`/@${this.props.curUser}/new`}> <div>New Post</div></Link></div>
           </div>
         </div>
       </div>
