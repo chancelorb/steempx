@@ -48,7 +48,7 @@ class Trending extends Component {
         <p>@{t.author} | {t.title}</p>
       </div>
     ))) : (<h1>Loading...</h1>)
-    console.log(trends)
+
     return (
       <div className='trending-container col-8'>
 

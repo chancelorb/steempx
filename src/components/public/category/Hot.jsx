@@ -18,7 +18,6 @@ class Hot extends Component {
       tag: `${this.props.theTag}`,
       limit: 100
     };
-    console.log("inside func", this.props.theTag)
     steem.api.getDiscussionsByHotAsync(query)
       .then(res => {
         this.setState({
@@ -40,7 +39,6 @@ class Hot extends Component {
   }
 
   render() {
-    console.log("in hot: ", this.props.theTag)
     let hot = (this.state.hot).length > 0 ? this.state.hot : ["not ready"] ;
     let check = (hot === this.state.hot) ? (hot.map(t => (
       <div className='post-container' key={t.id}>
@@ -48,7 +46,6 @@ class Hot extends Component {
         <p>@{t.author} | {t.title}</p>
       </div>
     ))) : (<h1>Loading...</h1>)
-    console.log(this.props.theTag, hot)
     return (
       <div className='hot-container col-8'>
 

@@ -41,7 +41,6 @@ class Home extends Component {
 
   }
   tagFunc(tag) {
-    console.log(tag)
     this.setState({
       theTag: tag
     })

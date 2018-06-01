@@ -21,7 +21,6 @@ class Index extends Component {
   componentDidMount() {
   }
   render() {
-    console.log("tester", this.props.curUser)
     let loaded = this.state.loaded ? (<Profile user={this.state.user} loaded={this.state.loaded} curUser={this.props.curUser}/>) : (<h1>Loading...</h1>)
     return (
       <div className='index'>

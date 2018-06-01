@@ -31,7 +31,6 @@ class New extends Component {
 	}
   handleSteemSubmit(e) {
     e.preventDefault();
-    console.log("steemSubmit activated!!!!!")
     steem.broadcast.comment(
       this.state.post.key,
       '',
@@ -40,7 +39,7 @@ class New extends Component {
       `this-is-a-steempx-post-made-by-${this.props.curUser}`,
       this.state.post.title,
       `![](${this.state.post.img_url}) Made With SteemPX`,
-      { tags: [`${this.state.post.tag}`], image:[`${this.state.post.img_url}`] },
+      { tags: ["steempx", `${this.state.post.tag}`], image:[`${this.state.post.img_url}`] },
       (err, result) => {
         if (!err) {
           console.log('Result', result)
@@ -61,7 +60,6 @@ class New extends Component {
 
 
   render() {
-    console.log(JSON.stringify(this.state.post.key), "string")
     const { title, img_url, key, tag} = this.state.post
     return (
       <div className='col-8'>

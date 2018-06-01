@@ -23,7 +23,6 @@ fetchPromoted() {
       this.setState({
         promoted: res
       });
-      console.log(res)
     })
     .catch(err => {
       console.log('oopsie', err)
@@ -48,7 +47,6 @@ fetchPromoted() {
         <p>@{t.author} | {t.title}</p>
       </div>
     ))) : (<h1>Loading...</h1>)
-    console.log(promoted)
     return (
       <div className='promoted-container col-8'>
 

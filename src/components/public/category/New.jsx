@@ -37,7 +37,6 @@ class New extends Component {
         this.setState({
           newPosts: res
         });
-        console.log(res)
       })
       .catch(err => {
         console.log('oopsie', err)
@@ -72,7 +71,6 @@ class New extends Component {
         <p>@{t.author} | {t.title}</p>
       </div>
     ))) : (<h1>Loading...</h1>)
-    console.log(news)
     return (
       <div className='new-container col-8'>
         <div className='steempx-posts' >

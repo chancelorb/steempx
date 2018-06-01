@@ -22,7 +22,6 @@ class Header extends Component {
   }
 
   checkUser(e) {
-    console.log("name:", this.state.name)
     e.preventDefault();
     steem.api.getAccountsAsync([this.state.name], (err, res) => {
       let check = res[0] ? true : false;

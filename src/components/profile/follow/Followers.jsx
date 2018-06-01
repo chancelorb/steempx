@@ -15,7 +15,6 @@ class Followers extends Component {
   }
   fetchFollowers() {
     steem.api.getFollowers(this.state.user, this.state.r, 'blog', 1000, (err, res) => {
-      console.log(this.props.user, res)
       this.setState({
         followers: res
       })
@@ -28,7 +27,6 @@ class Followers extends Component {
   render() {
     let check = (this.state.followers).length > 0 ? ((this.state.followers).length) : (<h1>Loading...</h1>);
     let followers = this.state.followers;
-    // console.log("follower:", this.state.follower)
     return (
       <div className='followers-container col-8'>
 

@@ -74,7 +74,6 @@ class Posts extends Component {
     this.fetchThisPosts(this.props.curUser)
   }
   render() {
-    console.log(this.state.thisPosts)
     //steempx
     let thisPosts = (this.state.thisPosts).length > 0 ? this.state.thisPosts : ["not the same"] ;
     let checkSteempx = (thisPosts === this.state.thisPosts) ? (thisPosts.map(t => (
@@ -93,7 +92,6 @@ class Posts extends Component {
       </div>
     ))) : (<h1>No Posts Yet</h1>)
     let loaded = this.state.loaded ? check : (<h1>Loading...</h1>)
-    console.log(posts)
     return (
       <div className='muted-container col-8'>
         <div className='steempx-posts' >

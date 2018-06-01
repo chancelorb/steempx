@@ -30,28 +30,6 @@ class App extends Component {
     })) : "";
   };
 
-  // fetchHot() {
-  //   steem.api.getDiscussionsByHot(['hot'], function(err, result) {
-  //     console.log("this is the hot fetch", err, result);
-  //   });
-  // }
-
-  fetchDevinfo() {
-    // let query = { limit : 3, tag : "steem" };
-    // steem.api.getTrendingTags("steem", 3, (err, data) => {
-    // 	console.log(err, data);
-    // })
-    steem.api.getStateAsync('trending/steemdev')
-      .then(r => console.log(JSON.stringify(r,null,2)))
-      .catch(console.log)
-  };
-
-  // fetchTrending() { ---------------This is in trending!
-  //   steem.api.getStateAsync('trending')
-  //     .then(data => console.log(JSON.stringify(data)))
-  //     .catch(console.log)
-  // }
-
   handleLogin(name) {
     // console.log(name.profile.name)
     this.setState({
@@ -77,7 +55,6 @@ class App extends Component {
 
   render() {
     let curUser = (this.state.curUser).length > 1 ? this.state.curUser : "";
-    console.log("ik ben curUser: ", curUser)
     return (
       <div className="App">
         <Header
