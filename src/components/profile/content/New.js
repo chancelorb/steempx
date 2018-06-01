@@ -40,7 +40,7 @@ class New extends Component {
       `this-is-a-steempx-post-made-by-${this.props.curUser}`,
       this.state.post.title,
       `![](${this.state.post.img_url}) Made With SteemPX`,
-      { tags: [`${this.state.post.tag}`] },
+      { tags: [`${this.state.post.tag}`], image:[`${this.state.post.img_url}`] },
       (err, result) => {
         if (!err) {
           console.log('Result', result)
