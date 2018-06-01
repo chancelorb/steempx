@@ -2,7 +2,7 @@
   "name": "react-steem",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chancelorb.github.io/steempx",
+  "homepage": "https://chancelorb.github.io/steempx/build/bundle.js",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "react": "^16.4.0",
