@@ -2,7 +2,7 @@
   "name": "react-steem",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://[your-user-name].github.io/[your-repo-name]/",
+  "homepage": "https://chancelorb.github.io/steempx/",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "react": "^16.4.0",
@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predoploy": "npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   }
 }
