@@ -46,7 +46,7 @@ fetchPromoted() {
         <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
         <p>@{t.author} | {t.title}</p>
       </div>
-    ))) : (<h1>Loading...</h1>)
+    ))) : (<h1 className='loader'></h1>)
     return (
       <div className='promoted-container col-8'>
 

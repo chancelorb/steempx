@@ -25,7 +25,7 @@ class Followers extends Component {
   }
 
   render() {
-    let check = (this.state.followers).length > 0 ? ((this.state.followers).length) : (<h1>Loading...</h1>);
+    let check = (this.state.followers).length > 0 ? ((this.state.followers).length) : (<h1 className='loader'></h1>);
     let followers = this.state.followers;
     return (
       <div className='followers-container col-8'>

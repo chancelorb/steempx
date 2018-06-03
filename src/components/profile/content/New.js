@@ -26,6 +26,7 @@ class New extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSteemSubmit = this.handleSteemSubmit.bind(this);
+    this.makePermaLink = this.makePermaLink.bind(this);
   }
   handleChange(e) {
 		const { name, value } = e.target;
@@ -36,6 +37,12 @@ class New extends Component {
 			}
 		}))
 	}
+  //neccessary for steemit to have a unique permalink
+  makePermaLink(title) {
+    var str = title;
+    str = str.replace(/\s+/g, '-').toLowerCase();
+    return str
+  }
   handleSteemSubmit(e) {
     e.preventDefault();
     this.setState({
@@ -46,15 +53,14 @@ class New extends Component {
     steem.broadcast.comment(
       this.state.post.key,
       '',
-      'steempx',
+      `steempx`,
       this.props.curUser,
-      `this-is-a-steempx-post-made-by-${this.props.curUser}`,
+      `${this.makePermaLink(this.state.post.title)}`,
       this.state.post.title,
-      `![](${this.state.post.img_url}) Made With SteemPX`,
-      { tags: ["steempx", `${this.state.post.tag}`], image:[`${this.state.post.img_url}`] },
+      `![](${this.state.post.img_url}) <hr /> <a href="https://steempx.herokuapp.com/">Made With SteemPX</a> <br />![](https://steempx.herokuapp.com/static/media/spLogo.5bfbb7c0.png)`,
+      { tags: ["steempx", `${this.state.post.tag}`], image:[`${this.state.post.img_url}`], app:'steempx' },
       (err, result) => {
         if (!err) {
-          console.log('Result', result)
           this.props.func(this.state.post);
           this.setState({
             sendLoading: false,
@@ -66,12 +72,12 @@ class New extends Component {
           });
 
         } else {
-          console.log('ERROR', err)
           this.setState({
             failed: true,
             sendLoading: false,
             form: true
           })
+        console.log(err)
         }
       }
     )

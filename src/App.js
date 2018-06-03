@@ -31,7 +31,6 @@ class App extends Component {
   };
 
   handleLogin(name) {
-    // console.log(name.profile.name)
     this.setState({
       curUser: name.profile.name
     });

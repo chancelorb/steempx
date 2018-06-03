@@ -16,7 +16,7 @@ class Following extends Component {
 
   fetchFollowing() {
     steem.api.getFollowing(this.state.user, this.state.r, 'blog', 1000, (err, res) => {
-      
+
       this.setState({
         followers: res
       })
@@ -27,7 +27,7 @@ class Following extends Component {
   }
 
   render() {
-    let check = (this.state.followers).length > 0 ? ((this.state.followers).length) : (<h1>Loading...</h1>);
+    let check = (this.state.followers).length > 0 ? ((this.state.followers).length) : (<h1 className='loader'>Loading...</h1>);
     let followers = this.state.followers;
     return (
       <div className='following-container col-8'>

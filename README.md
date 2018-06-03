@@ -7,15 +7,15 @@
 |---|---|
 |Day 1: Thu 5/24 | Wireframes, Priority Matrix, Schedule, Time Estimates, build react app with components |
 |Day 2: Fri 5/25 | Approval\Pseudocode\Actual code\|
-|Day 3: Sat 5/26 | Work on project  |
-|Day 4: Sun 5/27 | Work on project  |
-|Day 5: Mon 5/28 | Work on project  |
-|Day 6: Tues 5/29 | Work on project  |
-|Day 7: Wed 5/30 | Work on project  |
-|Day 8: Thurs 5/31  | Work on project  |
+|Day 3: Sat 5/26 | research steem api  |
+|Day 4: Sun 5/27 | research steem blockchain |
+|Day 5: Mon 5/28 | React components  |
+|Day 6: Tues 5/29 | React components  |
+|Day 7: Wed 5/30 | Node API / deploy API and React  |
+|Day 8: Thurs 5/31  | React components  |
 |Day 9: Fri 6/1 | Working Prototype with full commit to master |
-|Day 10: Sat 6/2 | Deployment |
-|Day 11: Sun 6/3 | Final edits...branching first |
+|Day 10: Sat 6/2 | Styling |
+|Day 11: Sun 6/3 | styling |
 |Day 12: Mon 6/4 | Project Presentations |
 
 ## Project Description
@@ -30,16 +30,18 @@ This is a platform where photographers can look for inspiration and share there 
 
 ## Wireframes
 
-*comming soon*
+<img src="wireFOne.jpg"/>
+<img src="wireFTwo.jpg"/>
+
+## ERD
+
+<img src="erd.jpg"/>
 
 ## Technologies
 
 - React js
 - Steem
 - Node js
-- Bootstrap
-- jQuery
-- Google fonts
 
 
 ## Priority Matrix
@@ -47,50 +49,66 @@ This is a platform where photographers can look for inspiration and share there 
 | part | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
 | readme | H | 30mins| 10mins | 10mins |
-| post on the Steem blockchain | H | 30hrs| 4hrs | 4hrs |
-| login with Steem | H | 2hrs| - | - |
-| api with node.js | H | 8hrs| - | - |
-| React native app | l | 10hrs| - | - |
+| post/delete on the Steem blockchain | H | 10hrs| 5hrs | 5hrs |
+| login with Steem | H | 2hrs| 1hr | 1hr |
+| api with node.js | H | 15hrs| 4hrs | 4hrs |
+| React native app | h | 40hrs| 40hrs | 40hrs |
+| Styling          | l | 20hrs | 20hrs |20hrs |
 
 ## MVP
 
-Include a bulleted list of the features that will be part of your MVP
+- Post/Delete (own Database and Steem)
+- Auth user
+- Select one image
+- Show user info
+- Deploy
 
 ## POST MVP
 
-Include a bulleted list of the features that will be part of POST MVP
+- Show other users info
+- Give Steem by liking
+- Comments on post
+- Deploy on decentralized Database
 
-
-## Functional Components
-
-Based on the initial logic defined in the previous game phases section try and breakdown the logic further into functional components, and by that we mean functions.  Does your logic indicate that code could be encapsulated for the purpose of reusablility.  Once a function has been defined it can then be incorporated into a class as a method.
-
-Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted.
-
-| Component | Priority | Estimated Time | Time Invetsted | Actual Time |
-| --- | :---: |  :---: | :---: | :---: |
-| Component 1 | H | 10hrs| 12hrs | 12hrs |
 
 ## Helper Functions
-Helper functions should be generic enought that they can be reused in other applications. Use this section to document all helper functions that fall into this category.
+- Make permalink function
 
 | Function | Description |
 | --- | :---: |  
-| Capitalize | This will capitalize the first letter in a string |
+| Permalink | this will replace a white space in a string with a dash  |
 
 ## Additional Libraries
- Use this section to list all supporting libraries and thier role in the project.
+- steemjs
+- jQuery
+- Google Font
+- bootstrap
 
 ## Code Snippet
 
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description.  
+Here I change the content on the new post page based on state changes.
+```
+<button type='submit'>Post</button>
+</form></div></div>);
+const loading = (<div className='loader'></div>);
+const failed = (<div className="error-post-msg"><p>Username And Password Don't match</p></div>);
+const confirmation = (<div className="confirmation-box"><h1>Sent!</h1><hr />
+<h3>Block nr: {this.state.block.block}</h3>
+<h3>transaction nr: {this.state.block.trx}</h3>
+</div>)
 
-## Change Log
- Use this section to document what changes were made and the reasoning behind those changes.  
 
-## Issues and Resolutions
- Use this section to list of all major issues encountered and their resolution.
+return (
+<div className='col-8'>
+  {this.state.failed && failed}
+  {this.state.form && form}
+  {this.state.sendLoading && loading}
+  {this.state.confirmation && confirmation}
 
-#### SAMPLE.....
-**ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier                                
-**RESOLUTION**: Missing comma after first object in sources {} object
+</div>
+)
+}
+}
+
+export default New;
+```  

@@ -82,7 +82,7 @@ class New extends Component {
         <img onClick={() => {this.handleZoom(t.img_url, t.user_id)}} onError={this.addDefaultSrc} src={t.img_url} alt="" className='home-pic'/>
         <p>@{t.user_id} | {t.title}</p>
       </div>
-    ))) : (<h1>Loading...</h1>)
+    ))) : (<h1 className='loader'></h1>)
     //steemit
     let news = (this.state.newPosts).length > 0 ? this.state.newPosts : ["not the same"] ;
     let check = (news === this.state.newPosts) ? (news.map(t => (
@@ -90,7 +90,7 @@ class New extends Component {
         <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
         <p>@{t.author} | {t.title}</p>
       </div>
-    ))) : (<h1>Loading...</h1>)
+    ))) : (<h1 className='loader'></h1>)
     return (
       <div className='new-container col-8'>
         <div className='steempx-posts' >

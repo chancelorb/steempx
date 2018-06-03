@@ -101,7 +101,7 @@ class Posts extends Component {
         <p>@{t.user_id} | {t.title}<button onClick={() => this.deleteThisPost(t.id)}>delete</button></p>
       </div>
     ))) : (<h1>No Posts Yet</h1>)
-    let pxLoaded = this.state.pxLoaded ? checkSteempx : (<h1>Loading...</h1>)
+    let pxLoaded = this.state.pxLoaded ? checkSteempx : (<h1 className='loader'></h1>)
     //steemit
     let posts = (this.state.posts).length > 0 ? this.state.posts : ["not the same"] ;
     let check = (posts === this.state.posts) ? (posts.map(t => (
@@ -110,7 +110,7 @@ class Posts extends Component {
         <p>@{t.author} | {t.title}</p>
       </div>
     ))) : (<h1>No Posts Yet</h1>)
-    let loaded = this.state.loaded ? check : (<h1>Loading...</h1>)
+    let loaded = this.state.loaded ? check : (<h1 className='loader'></h1>)
     return (
       <div className='muted-container col-8'>
         <div className='steempx-posts' >
