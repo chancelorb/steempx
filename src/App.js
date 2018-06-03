@@ -49,8 +49,6 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchUser()
-    // this.fetchHot()
-    // this.fetchTrending()
   }
 
   render() {

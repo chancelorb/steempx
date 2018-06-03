@@ -4,6 +4,6 @@
   height: 25em;
 }
 
-/* .new-title {
-  padding-top: 3em;
-} */
+.post-container > img:hover {
+  cursor: pointer;
+}

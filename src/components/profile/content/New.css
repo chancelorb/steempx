@@ -1,3 +1,14 @@
 .input-key {
   width: 45.5em;
 }
+
+.error-post-msg {
+  color: #f00;
+  background-color: #000;
+}
+
+
+.confirmation-box {
+  margin-top: 10em;
+  border: 1px solid #000;
+}

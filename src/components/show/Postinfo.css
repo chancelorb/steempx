@@ -1,0 +1,28 @@
+.zoom-pic {
+  position: fixed;
+  top: 5em;
+  left: 5em;
+  right: 5em;
+  width: auto;
+  height: 43em;
+  background-color: #000;
+  z-index: 1;
+}
+.zoom-pic-img > img {
+  max-height: 38.5em;
+}
+.zoom-info-bar {
+  background-color: #111;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.exit-zoom {
+  cursor: pointer;
+  display: inline-block;
+}
+.zoom-auth-name {
+  display: inline-block;
+  padding: 0.5em 0 0 0.5em;
+}

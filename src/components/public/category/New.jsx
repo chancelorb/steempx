@@ -2,17 +2,23 @@ import React, { Component } from 'react';
 import './New.css';
 import { Link } from 'react-router-dom';
 import steem from 'steem';
+import Postinfo from '../../show/Postinfo';
 const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/";
+
 
 class New extends Component {
   constructor(props) {
     super(props);
     this.state = {
       thisPosts: [],
-      newPosts: []
+      newPosts: [],
+      zoomPic: false,
+      curImg: ''
     }
     this.fetchDiscNew = this.fetchDiscNew.bind(this);
     this.addDefaultSrc = this.addDefaultSrc.bind(this);
+    this.handleZoom = this.handleZoom.bind(this);
+    this.handleDeZoom = this.handleDeZoom.bind(this);
   }
   // steempx
   fetchThisPosts() {
@@ -45,6 +51,20 @@ class New extends Component {
   addDefaultSrc(ev){
     ev.target.src = 'https://www.torbenrick.eu/blog/wp-content/uploads/2017/03/Broken-windows-theory-Applied-to-organizational-culture.jpg'
   }
+  handleZoom(img, maker) {
+    this.setState({
+      zoomPic: true,
+      curImg: {
+        img_url: img,
+        author: maker
+      }
+    })
+  }
+  handleDeZoom() {
+    this.setState({
+      zoomPic: false
+    })
+  }
 
   componentDidMount() {
     this.fetchDiscNew();
@@ -59,7 +79,7 @@ class New extends Component {
     let thisPosts = (this.state.thisPosts).length > 0 ? this.state.thisPosts : ["not the same"] ;
     let checkSteempx = (thisPosts === this.state.thisPosts) ? (thisPosts.map(t => (
       <div className='post-container' key={t.id}>
-        <img onError={this.addDefaultSrc} src={t.img_url} alt="" className='home-pic'/>
+        <img onClick={() => {this.handleZoom(t.img_url, t.user_id)}} onError={this.addDefaultSrc} src={t.img_url} alt="" className='home-pic'/>
         <p>@{t.user_id} | {t.title}</p>
       </div>
     ))) : (<h1>Loading...</h1>)
@@ -78,12 +98,14 @@ class New extends Component {
           <hr />
           {checkSteempx}
         </div>
+
         <div className='steemit-posts'>
           <h1 className='muted-title'>SteemIt Posts</h1>
           <hr />
           {check}
 
         </div>
+        {this.state.zoomPic && (<Postinfo func={this.handleDeZoom} pic={this.state.curImg}/>) }
       </div>
     );
   }

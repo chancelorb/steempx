@@ -20,7 +20,10 @@
   cursor: pointer;
   background-color: #eee;
 }
-
+.side-tags > a {
+  text-decoration: none;
+  color: #000;
+}
 .home-red {
   color: #f00;
 }
@@ -35,10 +38,8 @@
   padding-top: 3em;
 }
 
-.home-side-render a {
+.home-side-render {
   padding-top: 2em;
-  text-decoration: none;
-  color: #000;
 }
 
 .home-links:hover {

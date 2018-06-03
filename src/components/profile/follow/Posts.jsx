@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Posts.css';
 import { Link } from 'react-router-dom';
 import steem from 'steem';
+import Postinfo from '../../show/Postinfo';
 const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/";
 
 class Posts extends Component {
@@ -13,11 +14,15 @@ class Posts extends Component {
       curUser: this.props.curUser,
       loaded: false,
       pxLoaded: false,
+      zoomPic: false,
+      curImg: ''
     }
     this.fetchPosts = this.fetchPosts.bind(this);
-    this.addDefaultSrc = this.addDefaultSrc.bind(this)
-    this.fetchThisPosts = this.fetchThisPosts.bind(this)
-    this.deleteThisPost = this.deleteThisPost.bind(this)
+    this.addDefaultSrc = this.addDefaultSrc.bind(this);
+    this.fetchThisPosts = this.fetchThisPosts.bind(this);
+    this.deleteThisPost = this.deleteThisPost.bind(this);
+    this.handleZoom = this.handleZoom.bind(this);
+    this.handleDeZoom = this.handleDeZoom.bind(this);
   }
   fetchPosts() {
     console.log(this.state.curUser)
@@ -65,6 +70,20 @@ class Posts extends Component {
       })
     })
   }
+  handleZoom(img, maker) {
+    this.setState({
+      zoomPic: true,
+      curImg: {
+        img_url: img,
+        author: maker
+      }
+    })
+  }
+  handleDeZoom() {
+    this.setState({
+      zoomPic: false
+    })
+  }
 
   addDefaultSrc(ev){
     ev.target.src = 'https://www.torbenrick.eu/blog/wp-content/uploads/2017/03/Broken-windows-theory-Applied-to-organizational-culture.jpg'
@@ -78,7 +97,7 @@ class Posts extends Component {
     let thisPosts = (this.state.thisPosts).length > 0 ? this.state.thisPosts : ["not the same"] ;
     let checkSteempx = (thisPosts === this.state.thisPosts) ? (thisPosts.map(t => (
       <div className='post-container' key={t.id}>
-        <img onError={this.addDefaultSrc} src={t.img_url} alt="" className='home-pic'/>
+        <img onClick={() => {this.handleZoom(t.img_url, t.user_id)}} onError={this.addDefaultSrc} src={t.img_url} alt="" className='home-pic'/>
         <p>@{t.user_id} | {t.title}<button onClick={() => this.deleteThisPost(t.id)}>delete</button></p>
       </div>
     ))) : (<h1>No Posts Yet</h1>)
@@ -105,6 +124,7 @@ class Posts extends Component {
           {check}
 
         </div>
+        {this.state.zoomPic && (<Postinfo func={this.handleDeZoom} pic={this.state.curImg}/>) }
       </div>
     );
   }
