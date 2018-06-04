@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Index from './components/profile/Index';
 import Home from './components/public/Home';
+import User from './components/view/User'
 import steem from 'steem';
 const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/"
 
@@ -76,6 +77,14 @@ class App extends Component {
               loaded={this.state.loaded}
               curUser={this.state.curUser}
               onSubmit={this.createPost}
+            /> )} />
+          <Route exact path='/user/:id/:sel' component={(props) => (
+            <User  {...props}
+              curUser={this.state.curUser}
+            /> )} />
+          <Route exact path='/user/:id' component={(props) => (
+            <User  {...props}
+              curUser={this.state.curUser}
             /> )} />
 
           <Route exact path='/' component={(props) => (<Home  {...props} curUser={this.state.curUser}/> )} />

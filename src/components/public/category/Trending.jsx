@@ -45,7 +45,7 @@ class Trending extends Component {
     let check = (trends === this.state.trending) ? (trends.map(t => (
       <div className='post-container' key={t.id}>
         <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
-        <p>@{t.author} | {t.title}</p>
+        <p>@<Link to={`/user/${t.author}`}>{t.author}</Link> | {t.title}</p>
       </div>
     ))) : (<h1 className='loader'></h1>)
 

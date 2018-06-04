@@ -1,56 +1,59 @@
 import React, { Component } from 'react';
-import './New.css';
+import './ViewPosts.css';
 import { Link } from 'react-router-dom';
 import steem from 'steem';
 import Postinfo from '../../show/Postinfo';
 const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/";
 
-
-class New extends Component {
+class ViewPosts extends Component {
   constructor(props) {
     super(props);
     this.state = {
       thisPosts: [],
-      newPosts: [],
+      posts: [],
+      curUser: this.props.curUser,
+      loaded: false,
+      pxLoaded: false,
       zoomPic: false,
       curImg: ''
     }
-    this.fetchDiscNew = this.fetchDiscNew.bind(this);
+    this.fetchPosts = this.fetchPosts.bind(this);
     this.addDefaultSrc = this.addDefaultSrc.bind(this);
+    this.fetchThisPosts = this.fetchThisPosts.bind(this);
     this.handleZoom = this.handleZoom.bind(this);
     this.handleDeZoom = this.handleDeZoom.bind(this);
   }
-  // steempx
-  fetchThisPosts() {
-    fetch(`${BASE_URL}api/pic`)
+  fetchPosts() {
+    console.log(this.state.curUser)
+    var query = {
+      tag: this.state.curUser,
+      limit: 100
+    };
+    steem.api.getDiscussionsByBlogAsync(query)
+      .then(res => {
+        this.setState({
+          posts: res,
+          loaded: true
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  fetchThisPosts(user) {
+    fetch(`${BASE_URL}api/pic/user/${user}`)
       .then(resp => {
         if (!resp.ok) {
           throw Error('oops: ', resp.message);
         }
         return resp.json();
       }).then(data => this.setState ({
-          thisPosts: data.data
+          thisPosts: data.data,
+          pxLoaded: true
       })).catch(err => console.log(`error: ${err}`))
   }
-  //steemit
-  fetchDiscNew() {
-    var query = {
-      tag: `${this.props.theTag}`,
-      limit: 100
-    };
-    steem.api.getDiscussionsByCreatedAsync(query)
-      .then(res => {
-        this.setState({
-          newPosts: res
-        });
-      })
-      .catch(err => {
-        console.log('oopsie', err)
-      })
-  }
-  addDefaultSrc(ev){
-    ev.target.src = 'https://www.torbenrick.eu/blog/wp-content/uploads/2017/03/Broken-windows-theory-Applied-to-organizational-culture.jpg'
-  }
+
   handleZoom(img, maker) {
     this.setState({
       zoomPic: true,
@@ -66,39 +69,39 @@ class New extends Component {
     })
   }
 
+  addDefaultSrc(ev){
+    ev.target.src = 'https://www.torbenrick.eu/blog/wp-content/uploads/2017/03/Broken-windows-theory-Applied-to-organizational-culture.jpg'
+  }
   componentDidMount() {
-    this.fetchDiscNew();
-    this.fetchThisPosts();
+    this.fetchPosts()
+    this.fetchThisPosts(this.props.curUser)
   }
-  componentWillReceiveProps() {
-    this.fetchDiscNew()
-  }
-
   render() {
     //steempx
     let thisPosts = (this.state.thisPosts).length > 0 ? this.state.thisPosts : ["not the same"] ;
     let checkSteempx = (thisPosts === this.state.thisPosts) ? (thisPosts.map(t => (
       <div className='post-container' key={t.id}>
         <img onClick={() => {this.handleZoom(t.img_url, t.user_id)}} onError={this.addDefaultSrc} src={t.img_url} alt="" className='home-pic'/>
-        <p>@<Link to={`/user/${t.user_id}`}>{t.user_id}</Link> | {t.title}</p>
+        <p>@{t.user_id} | {t.title}</p>
       </div>
-    ))) : (<h1 className='loader'></h1>)
+    ))) : (<h1>No Posts Yet</h1>)
+    let pxLoaded = this.state.pxLoaded ? checkSteempx : (<h1 className='loader'></h1>)
     //steemit
-    let news = (this.state.newPosts).length > 0 ? this.state.newPosts : ["not the same"] ;
-    let check = (news === this.state.newPosts) ? (news.map(t => (
+    let posts = (this.state.posts).length > 0 ? this.state.posts : ["not the same"] ;
+    let check = (posts === this.state.posts) ? (posts.map(t => (
       <div className='post-container' key={t.id}>
         <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
-        <p>@<Link to={`/user/${t.author}`}>{t.author}</Link> | {t.title}</p>
+        <p>@{t.author} | {t.title}</p>
       </div>
-    ))) : (<h1 className='loader'></h1>)
+    ))) : (<h1>No Posts Yet</h1>)
+    let loaded = this.state.loaded ? check : (<h1 className='loader'></h1>)
     return (
-      <div className='new-container col-8'>
+      <div className='muted-container col-8'>
         <div className='steempx-posts' >
           <h1 className='muted-title'>SteemPX Posts</h1>
           <hr />
-          {checkSteempx}
+          {pxLoaded}
         </div>
-
         <div className='steemit-posts'>
           <h1 className='muted-title'>SteemIt Posts</h1>
           <hr />
@@ -111,4 +114,4 @@ class New extends Component {
   }
 }
 
-export default New;
+export default ViewPosts;
