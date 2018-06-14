@@ -15,7 +15,7 @@ class Trending extends Component {
 
   fetchDiscTrending() {
     var query = {
-      tag: `${this.props.theTag}`,
+      tag: '',
       limit: 100
     };
     steem.api.getDiscussionsByTrendingAsync(query)
@@ -23,6 +23,7 @@ class Trending extends Component {
         this.setState({
           trending: res
         });
+        console.log("trending res: ", res)
       })
       .catch(err => {
         console.log('oopsie', err)

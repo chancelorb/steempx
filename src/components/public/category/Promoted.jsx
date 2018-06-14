@@ -23,6 +23,7 @@ fetchPromoted() {
       this.setState({
         promoted: res
       });
+      console.log("this is promoted: ", res)
     })
     .catch(err => {
       console.log('oopsie', err)

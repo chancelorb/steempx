@@ -12,7 +12,7 @@ class Home extends Component {
     super(props);
     this.state = {
       trendingTags: [],
-      theTag: 'photography'
+      theTag: 'steempx'
     }
     this.submitFunc = this.submitFunc.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -49,6 +49,20 @@ class Home extends Component {
   componentDidMount() {
     this.fetchTags();
   }
+  // <div className='col-2 home-side-render'>Trending Tags
+  //   <hr />
+  //   {tags.map(t => (
+  //     <div className='side-tags'onClick={() => this.tagFunc(t.name)}>{t.name}</div>
+  //   ))}
+  // </div>
+
+  // <div className='col-2 home-side-render'>Links
+  //   <hr />
+  //   <div className='side-tags' ><Link to={`/@${this.props.curUser}/followers`}> <div>Followers</div></Link></div>
+  //   <div className='side-tags' ><Link to={`/@${this.props.curUser}/following`}> <div>Following</div></Link></div>
+  //   <div className='side-tags' ><Link to={`/@${this.props.curUser}/posts`}> <div>My Posts</div></Link></div>
+  //   <div className='side-tags' ><Link to={`/@${this.props.curUser}/new`}> <div>New Post</div></Link></div>
+  // </div>
   render() {
     const tags = (this.state.trendingTags).length > 1 ? this.state.trendingTags : ["Loading..."]
     return (
@@ -65,12 +79,7 @@ class Home extends Component {
            </div>
         </div>
         <div className='row home-render'>
-          <div className='col-2 home-side-render'>Trending Tags
-            <hr />
-            {tags.map(t => (
-              <div className='side-tags'onClick={() => this.tagFunc(t.name)}>{t.name}</div>
-            ))}
-          </div>
+
           <Switch>
 
             <Route exact path='/new' render={(props) => (<New {...props} theTag={this.state.theTag} /> )} />
@@ -81,13 +90,7 @@ class Home extends Component {
 
 
           </Switch>
-          <div className='col-2 home-side-render'>Links
-            <hr />
-            <div className='side-tags' ><Link to={`/@${this.props.curUser}/followers`}> <div>Followers</div></Link></div>
-            <div className='side-tags' ><Link to={`/@${this.props.curUser}/following`}> <div>Following</div></Link></div>
-            <div className='side-tags' ><Link to={`/@${this.props.curUser}/posts`}> <div>My Posts</div></Link></div>
-            <div className='side-tags' ><Link to={`/@${this.props.curUser}/new`}> <div>New Post</div></Link></div>
-          </div>
+
         </div>
       </div>
     );

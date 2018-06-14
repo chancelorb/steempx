@@ -47,10 +47,10 @@ class Header extends Component {
           <Link className="navbar-brand logo" to="/"><img src={logo} className='logo-pic' /></Link>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <Link className="nav-item nav-link left active" to="/trending">Trending <span className="sr-only">(current)</span></Link>
+              <Link className="nav-item nav-link left disabled" to="/new">Trending <span className="sr-only">(current)</span></Link>
               <Link className="nav-item nav-link left active" to="/new">New</Link>
-              <Link className="nav-item nav-link right active" to="/hot">Hot</Link>
-              <Link className="nav-item nav-link right active" to="/promoted">Promoted</Link>
+              <Link className="nav-item nav-link right disabled" to="/new">Hot</Link>
+              <Link className="nav-item nav-link right disabled" to="/new">Promoted</Link>
             </div>
           </div>
           {curUser}

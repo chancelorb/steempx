@@ -39,7 +39,7 @@ class New extends Component {
 	}
   //neccessary for steemit to have a unique permalink
   makePermaLink(title) {
-    var str = title;
+    var str = title + `-by ${this.props.curUser}`;
     str = str.replace(/\s+/g, '-').toLowerCase();
     return str
   }
@@ -58,7 +58,7 @@ class New extends Component {
       `${this.makePermaLink(this.state.post.title)}`,
       this.state.post.title,
       `![](${this.state.post.img_url}) <hr /> <a href="https://steempx.herokuapp.com/">Made With SteemPX</a> <br />![](https://steempx.herokuapp.com/static/media/spLogo.5bfbb7c0.png)`,
-      { tags: ["steempx", `${this.state.post.tag}`], image:[`${this.state.post.img_url}`], app:'steempx' },
+      { tags: ["steempx", "photography", `${this.state.post.tag}`], image:[`${this.state.post.img_url}`], app:'steempx' },
       (err, result) => {
         if (!err) {
           this.props.func(this.state.post);

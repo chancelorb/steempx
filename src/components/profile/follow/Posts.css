@@ -17,3 +17,19 @@
   background-color: #ddd;
   margin-top: 3em;
 }
+.card-container {
+  display: block;
+  margin-top: 2em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  width: auto;
+}
+
+.not-home-pic {
+  padding-top: 2em;
+  min-height: 10em;
+  width: auto;
+  max-width: 45em;
+  min-width: 7em;
+  max-height: 30em;
+}

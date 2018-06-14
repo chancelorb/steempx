@@ -13,3 +13,11 @@
   border: solid 1px #000;
   background-color: #999;
 }
+.folowers-display > a {
+  text-decoration: none;
+  color: #fff;
+}
+.folowers-display > a:hover {
+  text-decoration: none;
+  color: #fff;
+}

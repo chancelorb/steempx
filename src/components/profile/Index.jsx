@@ -27,11 +27,11 @@ class Index extends Component {
 
         {loaded}
         <div className='profile-info-cat row bg-light'>
-          <div className='col-1'></div>
-          <Link to={`/@${this.props.curUser}/followers`} className='col-1'>Followers</Link>
-          <Link to={`/@${this.props.curUser}/following`} className='col-1'>Following</Link>
-          <Link to={`/@${this.props.curUser}/posts`} className='col-1'>Posts</Link>
-          <Link to={`/@${this.props.curUser}/new`} className='col-1'>New Post</Link>
+          <div className='col-md-1'></div>
+          <Link to={`/@${this.props.curUser}/followers`} className='col-md-1'>Followers</Link>
+          <Link to={`/@${this.props.curUser}/following`} className='col-md-1'>Following</Link>
+          <Link to={`/@${this.props.curUser}/posts`} className='col-md-1'>Posts</Link>
+          <Link to={`/@${this.props.curUser}/new`} className='col-md-1'>New Post</Link>
         </div>
         <div className='row'>
           <div className='col-2'></div>

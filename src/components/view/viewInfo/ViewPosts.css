@@ -9,11 +9,17 @@
 }
 
 .steempx-posts{
-  background-color: #eee;
+  background-color: #fff;
   margin-top: 3em;
 }
 
 .steemit-posts{
   background-color: #ddd;
   margin-top: 3em;
+}
+.show {
+  color: red;
+}
+.hide {
+  color: blue;
 }

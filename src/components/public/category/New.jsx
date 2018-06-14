@@ -6,10 +6,12 @@ import Postinfo from '../../show/Postinfo';
 const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/";
 
 
+
 class New extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      onPic: "false",
       thisPosts: [],
       newPosts: [],
       zoomPic: false,
@@ -66,6 +68,7 @@ class New extends Component {
     })
   }
 
+
   componentDidMount() {
     this.fetchDiscNew();
     this.fetchThisPosts();
@@ -76,11 +79,12 @@ class New extends Component {
 
   render() {
     //steempx
+    let onPic = (this.state.onPic) ? "show" : "hide";
     let thisPosts = (this.state.thisPosts).length > 0 ? this.state.thisPosts : ["not the same"] ;
     let checkSteempx = (thisPosts === this.state.thisPosts) ? (thisPosts.map(t => (
       <div className='post-container' key={t.id}>
         <img onClick={() => {this.handleZoom(t.img_url, t.user_id)}} onError={this.addDefaultSrc} src={t.img_url} alt="" className='home-pic'/>
-        <p>@<Link to={`/user/${t.user_id}`}>{t.user_id}</Link> | {t.title}</p>
+        <div className='row post-container-text'><Link className='col-md-6' to={`/user/${t.user_id}`}>@{t.user_id}</Link><div onClick='' className='col-md-6 like-button' >Like</div></div>
       </div>
     ))) : (<h1 className='loader'></h1>)
     //steemit
@@ -88,11 +92,11 @@ class New extends Component {
     let check = (news === this.state.newPosts) ? (news.map(t => (
       <div className='post-container' key={t.id}>
         <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
-        <p>@<Link to={`/user/${t.author}`}>{t.author}</Link> | {t.title}</p>
+        <div className='row post-container-text'><Link className='col-md-6' to={`/user/${t.author}`} >@{t.author}</Link><div onClick='' className='col-md-6 like-button' >Like</div></div>
       </div>
     ))) : (<h1 className='loader'></h1>)
     return (
-      <div className='new-container col-8'>
+      <div className='new-container col-12'>
         <div className='steempx-posts' >
           <h1 className='muted-title'>SteemPX Posts</h1>
           <hr />

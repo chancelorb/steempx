@@ -1,9 +1,57 @@
 .new-container {
   background-color: #fff;
   color: #000;
-  height: 25em;
 }
 
 .post-container > img:hover {
   cursor: pointer;
+}
+.post-container-text {
+  position: relative;
+  text-align: left;
+  position: relative;
+  bottom: 0
+}
+
+.post-container-text, .post-container-text > a {
+  position: relative;
+  bottom: 2em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  color: rgba(255, 255, 255, 0);
+  text-decoration: none;
+}
+.post-container:hover > .post-container-text {
+  position: relative;
+  bottom: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+}
+.post-container:hover > .post-container-text > a {
+  position: relative;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+  text-decoration: none;
+}
+
+.like-button {
+  position: relative;
+  max-height: 1.5em;
+  max-width: 4em;
+  background-image: url('../../../assets/heart.png');
+}
+.like-button:hover {
+  bottom: 0;
+  z-index: 5;
+  position: relative;
+  max-height: 1.5em;
+  max-width: 4em;
+  background-image: url('../../../assets/heart.png');
 }

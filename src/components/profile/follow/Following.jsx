@@ -34,7 +34,7 @@ class Following extends Component {
 
         <h1 className='following-title'>Following({check})</h1>
         {followers.map(a => (
-          <div className="folowers-display" key={a.following}>{a.following}</div>
+          <div className="folowers-display" key={a.following}><Link to={`/user/${a.following}`}>{a.following}</Link></div>
         ))}
 
       </div>

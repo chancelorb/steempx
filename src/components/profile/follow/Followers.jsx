@@ -18,6 +18,7 @@ class Followers extends Component {
       this.setState({
         followers: res
       })
+      console.log(res)
     });
   }
   componentDidMount() {
@@ -32,7 +33,7 @@ class Followers extends Component {
 
         <h1 className='followers-title'>Followers({check})</h1>
         {followers.map(a => (
-          <div className="folowers-display" key={a.follower}>{a.follower}</div>
+          <div className="folowers-display" key={a.follower}><Link to={`/user/${a.follower}`}>{a.follower}</Link></div>
         ))}
 
       </div>
