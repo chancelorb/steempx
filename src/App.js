@@ -24,6 +24,7 @@ class App extends Component {
   fetchUser() {
     let curUser = (this.state.curUser).length > 1 ? (
     steem.api.getAccounts([this.state.curUser], (err, resp) => {
+      console.log(resp, "ik ben de ingelogde")
       this.setState ({
         user : {...JSON.parse(resp[0].json_metadata)},
         loaded : true

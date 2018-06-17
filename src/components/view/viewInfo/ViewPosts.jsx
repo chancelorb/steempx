@@ -65,7 +65,7 @@ class ViewPosts extends Component {
       console.log(t.pending_payout_value)
       return <div className='card-container' key={t.id}>
         <Card>
-        <img onClick={() => {this.handleZoom(JSON.parse(t.json_metadata).image, t.author)}} onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} className='not-home-pic'/>
+        <img onClick={() => {this.handleZoom(JSON.parse(t.json_metadata).image, t.author, t)}} onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} className='not-home-pic'/>
 
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
@@ -74,10 +74,12 @@ class ViewPosts extends Component {
         </CardContent>
         <div>
 
-            <FavoriteIcon /> |
+          <IconButton aria-label="Add to favorites">
+            <FavoriteIcon />
+          </IconButton>
 
 
-            ^{t.net_votes} |
+          | ^{t.net_votes} |
 
 
             ${t.pending_payout_value}
@@ -89,14 +91,16 @@ class ViewPosts extends Component {
     }
   }
 
-  handleZoom(img, maker) {
-    this.setState({
-      zoomPic: true,
-      curImg: {
-        img_url: img,
-        author: maker
-      }
-    })
+  handleZoom(img, maker, t) {
+    // this.setState({
+    //   zoomPic: true,
+    //   curImg: {
+    //     img_url: img,
+    //     author: maker,
+    //     all: t
+    //   }
+    // })
+    console.log("pressed")
   }
   handleDeZoom() {
     this.setState({
@@ -127,14 +131,14 @@ class ViewPosts extends Component {
       this.fetchThisPosts(t)))) : (<h1>No Posts Yet</h1>)
     let pxLoaded = this.state.loaded ? checkThis : (<h1 className='loader'></h1>)
     //steemit
-    let posts = (this.state.posts).length > 0 ? this.state.posts : ["not the same"] ;
-    let check = (posts === this.state.posts) ? (posts.map(t => (
-      <div className='post-container' key={t.id}>
-        <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
-        <p>@{t.author} | {t.title}</p>
-      </div>
-    ))) : (<h1>No Posts Yet</h1>)
-    let loaded = this.state.loaded ? check : (<h1 className='loader'></h1>)
+    // let posts = (this.state.posts).length > 0 ? this.state.posts : ["not the same"] ;
+    // let check = (posts === this.state.posts) ? (posts.map(t => (
+    //   <div className='post-container' key={t.id}>
+    //     <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
+    //     <p>@{t.author} | {t.title}</p>
+    //   </div>
+    // ))) : (<h1>No Posts Yet</h1>)
+    // let loaded = this.state.loaded ? check : (<h1 className='loader'></h1>)
     return (
       <div className='muted-container col-8'>
         <div className='steempx-posts' >
@@ -142,12 +146,7 @@ class ViewPosts extends Component {
           <hr />
           {pxLoaded}
         </div>
-        <div className='steemit-posts'>
-          <h1 className='muted-title'>SteemIt Posts</h1>
-          <hr />
-          {check}
 
-        </div>
         {this.state.zoomPic && (<Postinfo func={this.handleDeZoom} pic={this.state.curImg}/>) }
       </div>
     );

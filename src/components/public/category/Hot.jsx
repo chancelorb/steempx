@@ -15,7 +15,7 @@ class Hot extends Component {
 
   fetchHot() {
     var query = {
-      tag: `${this.props.theTag}`,
+      tag: `steempx`,
       limit: 100
     };
     steem.api.getDiscussionsByHotAsync(query)

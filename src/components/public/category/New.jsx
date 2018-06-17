@@ -12,7 +12,6 @@ class New extends Component {
     super(props);
     this.state = {
       onPic: "false",
-      thisPosts: [],
       newPosts: [],
       zoomPic: false,
       curImg: ''
@@ -22,29 +21,29 @@ class New extends Component {
     this.handleZoom = this.handleZoom.bind(this);
     this.handleDeZoom = this.handleDeZoom.bind(this);
   }
-  // steempx
-  fetchThisPosts() {
-    fetch(`${BASE_URL}api/pic`)
-      .then(resp => {
-        if (!resp.ok) {
-          throw Error('oops: ', resp.message);
-        }
-        return resp.json();
-      }).then(data => this.setState ({
-          thisPosts: data.data
-      })).catch(err => console.log(`error: ${err}`))
-  }
   //steemit
+
+  checkApp(app) {
+    let res = [];
+    app.map(i => {
+      if (JSON.parse(i.json_metadata).app === "steempx") {
+        res.push(i);
+      }
+    })
+    return res
+  }
+
   fetchDiscNew() {
     var query = {
-      tag: `${this.props.theTag}`,
+      tag: 'steempx',
       limit: 100
     };
     steem.api.getDiscussionsByCreatedAsync(query)
       .then(res => {
         this.setState({
-          newPosts: res
+          newPosts: this.checkApp(res)
         });
+
       })
       .catch(err => {
         console.log('oopsie', err)
@@ -53,14 +52,16 @@ class New extends Component {
   addDefaultSrc(ev){
     ev.target.src = 'https://www.torbenrick.eu/blog/wp-content/uploads/2017/03/Broken-windows-theory-Applied-to-organizational-culture.jpg'
   }
-  handleZoom(img, maker) {
+  handleZoom(img, maker, t) {
     this.setState({
       zoomPic: true,
       curImg: {
         img_url: img,
-        author: maker
+        author: maker,
+        all: t
       }
     })
+
   }
   handleDeZoom() {
     this.setState({
@@ -71,7 +72,6 @@ class New extends Component {
 
   componentDidMount() {
     this.fetchDiscNew();
-    this.fetchThisPosts();
   }
   componentWillReceiveProps() {
     this.fetchDiscNew()
@@ -79,36 +79,32 @@ class New extends Component {
 
   render() {
     //steempx
-    let onPic = (this.state.onPic) ? "show" : "hide";
-    let thisPosts = (this.state.thisPosts).length > 0 ? this.state.thisPosts : ["not the same"] ;
-    let checkSteempx = (thisPosts === this.state.thisPosts) ? (thisPosts.map(t => (
-      <div className='post-container' key={t.id}>
-        <img onClick={() => {this.handleZoom(t.img_url, t.user_id)}} onError={this.addDefaultSrc} src={t.img_url} alt="" className='home-pic'/>
-        <div className='row post-container-text'><Link className='col-md-6' to={`/user/${t.user_id}`}>@{t.user_id}</Link><div onClick='' className='col-md-6 like-button' >Like</div></div>
-      </div>
-    ))) : (<h1 className='loader'></h1>)
+    // let onPic = (this.state.onPic) ? "show" : "hide";
+    // let thisPosts = (this.state.thisPosts).length > 0 ? this.state.thisPosts : ["not the same"] ;
+    // let checkSteempx = (thisPosts === this.state.thisPosts) ? (thisPosts.map(t => (
+    //   <div className='post-container' key={t.id}>
+    //     <img onClick={() => {this.handleZoom(t.img_url, t.user_id)}} onError={this.addDefaultSrc} src={t.img_url} alt="" className='home-pic'/>
+    //     <div className='row post-container-text'><Link className='col-md-6' to={`/user/${t.user_id}`}>@{t.user_id}</Link><div onClick='' className='col-md-6 like-button' >Like</div></div>
+    //   </div>
+    // ))) : (<h1 className='loader'></h1>)
     //steemit
     let news = (this.state.newPosts).length > 0 ? this.state.newPosts : ["not the same"] ;
     let check = (news === this.state.newPosts) ? (news.map(t => (
       <div className='post-container' key={t.id}>
-        <img onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
-        <div className='row post-container-text'><Link className='col-md-6' to={`/user/${t.author}`} >@{t.author}</Link><div onClick='' className='col-md-6 like-button' >Like</div></div>
+        <img onClick={() => {this.handleZoom(JSON.parse(t.json_metadata).image, t.author, t)}} onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
+        <div className='row post-container-text'><Link  to={`/user/${t.author}`} >@{t.author}</Link></div>
       </div>
     ))) : (<h1 className='loader'></h1>)
     return (
       <div className='new-container col-12'>
         <div className='steempx-posts' >
-          <h1 className='muted-title'>SteemPX Posts</h1>
+          <h1 className='muted-title'>NEW</h1>
           <hr />
-          {checkSteempx}
-        </div>
 
-        <div className='steemit-posts'>
-          <h1 className='muted-title'>SteemIt Posts</h1>
-          <hr />
           {check}
-
         </div>
+
+
         {this.state.zoomPic && (<Postinfo func={this.handleDeZoom} pic={this.state.curImg}/>) }
       </div>
     );

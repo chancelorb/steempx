@@ -10,15 +10,15 @@ class Profile extends Component {
       <div>
       <div className='Profile row'>
         <div className='col-2'></div>
-        <div className='col-3 profile-image-container' >
+        <div className='col-md-3 profile-image-container' >
           <img src={this.props.user.profile.profile_image} className='profile-image' />
         </div>
-        <div className='profile-info-disc col-2'>
+        <div className='profile-info-disc col-md-2'>
           <h3 >Name:  </h3>
           <h3 >Location: </h3>
           <h3 >About:</h3>
         </div>
-        <div className='profile-info col-5'>
+        <div className='profile-info col-md-5'>
           <h3 >{this.props.user.profile.name}</h3>
           <h3 >{this.props.user.profile.location}</h3>
           <h3 >{this.props.user.profile.about}</h3>

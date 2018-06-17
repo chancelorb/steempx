@@ -10,3 +10,7 @@
   width: 4em;
   margin: -1em;
 }
+
+.form-control {
+  min-width: 8em;
+}

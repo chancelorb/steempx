@@ -15,7 +15,7 @@ class Trending extends Component {
 
   fetchDiscTrending() {
     var query = {
-      tag: '',
+      tag: 'steempx',
       limit: 100
     };
     steem.api.getDiscussionsByTrendingAsync(query)

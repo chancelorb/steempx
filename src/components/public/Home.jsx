@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Home.css';
-import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 import New from './category/New';
 import Hot from './category/Hot';
 import Promoted from './category/Promoted';
@@ -12,23 +12,25 @@ class Home extends Component {
     super(props);
     this.state = {
       trendingTags: [],
-      theTag: 'steempx'
+      theTag: 'steempx',
+      user: "",
+      redirect: false
     }
     this.submitFunc = this.submitFunc.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  fetchTags() {
-    steem.api.getTrendingTagsAsync('', 100)
-      .then(res => {
-        this.setState({
-          trendingTags: res
-        });
-      })
-      .catch(err => {
-        console.log('oopsie', err);
-      })
-  }
+  // fetchTags() {
+  //   steem.api.getTrendingTagsAsync('', 100)
+  //     .then(res => {
+  //       this.setState({
+  //         trendingTags: res
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log('oopsie', err);
+  //     })
+  // }
   handleInputChange(e) {
     const { name, value } = e.target;
     this.setState({
@@ -37,35 +39,17 @@ class Home extends Component {
   }
   submitFunc(e) {
     e.preventDefault();
-    this.fetchTags();
-
-  }
-  tagFunc(tag) {
     this.setState({
-      theTag: tag
+      redirect: true
     })
+
   }
 
-  componentDidMount() {
-    this.fetchTags();
-  }
-  // <div className='col-2 home-side-render'>Trending Tags
-  //   <hr />
-  //   {tags.map(t => (
-  //     <div className='side-tags'onClick={() => this.tagFunc(t.name)}>{t.name}</div>
-  //   ))}
-  // </div>
-
-  // <div className='col-2 home-side-render'>Links
-  //   <hr />
-  //   <div className='side-tags' ><Link to={`/@${this.props.curUser}/followers`}> <div>Followers</div></Link></div>
-  //   <div className='side-tags' ><Link to={`/@${this.props.curUser}/following`}> <div>Following</div></Link></div>
-  //   <div className='side-tags' ><Link to={`/@${this.props.curUser}/posts`}> <div>My Posts</div></Link></div>
-  //   <div className='side-tags' ><Link to={`/@${this.props.curUser}/new`}> <div>New Post</div></Link></div>
-  // </div>
   render() {
     const tags = (this.state.trendingTags).length > 1 ? this.state.trendingTags : ["Loading..."]
     return (
+      <div>
+      {this.state.redirect && <Redirect to={`/user/${this.state.user}`} />}
       <div className='home-container'>
         <div className='home'>
           <div className='home-text'>
@@ -74,7 +58,7 @@ class Home extends Component {
           <div className="row">
             <div className="col-3" ></div>
             <form onSubmit={this.submitFunc} className="form-group col-6 user-box">
-              <input placeholder='What tag are you looking for?' className="form-control" type="text" name='theTag' onKeyPress={this.handleInputChange}></input>
+              <input placeholder='Search for friends' className="form-control" type="text" name='user' onKeyPress={this.handleInputChange}></input>
             </form>
            </div>
         </div>
@@ -92,6 +76,7 @@ class Home extends Component {
           </Switch>
 
         </div>
+      </div>
       </div>
     );
   }

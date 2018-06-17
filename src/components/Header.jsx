@@ -34,9 +34,16 @@ class Header extends Component {
     let curUser = (this.props.curUser).length > 1 ?
     (<Link to={`/@${this.props.curUser}`}> <img src={user.profile_image} alt="" className='nav-pic'/></Link>)
     :
-    (<form onSubmit={this.checkUser} className="form-group col-2 user-box">
-      <input placeholder='Type username' className="form-control" type="text" name='name' onChange={this.handleInputChange}></input>
-    </form>);
+    (<div class="dropdown">
+      <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Log in
+      </button>
+      <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="dropdownMenuButton">
+        <form onSubmit={this.checkUser} className="form-group col-2 user-box dropdown-item">
+        <input placeholder='username' className="form-control" type="text" name='name' onChange={this.handleInputChange}></input>
+      </form>
+      </div>
+    </div>);
     return (
       <div className='nav-bar'>
 

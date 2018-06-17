@@ -37,6 +37,9 @@
 .home-render {
   padding-top: 3em;
 }
+input {
+  text-align: center;
+}
 
 .home-side-render {
   padding-top: 2em;

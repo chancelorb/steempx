@@ -1,28 +1,55 @@
 .zoom-pic {
   position: fixed;
-  top: 5em;
-  left: 5em;
-  right: 5em;
-  width: auto;
-  height: 43em;
-  background-color: #000;
-  z-index: 1;
-}
-.zoom-pic-img > img {
-  max-height: 38.5em;
-}
-.zoom-info-bar {
-  background-color: #111;
-  color: #fff;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  top: 1em;
+  margin-left: 5em;
+  margin-right: 5em;
+  height: auto;
+  max-height: 96%;
+  z-index: 5000 ;
+  background-color: red;
+  overflow: scroll;
+}
+
+.zoom-info-bar {
+  max-height: 2.5em;
+  padding-bottom: 0;
+  display: flex;
+  position: relative;
+  color: #000;
+
+  align-items: right;
+  top: 0;
+  z-index: 10;
+  margin-bottom: -2em;
+  margin-left: 0.5em;
 }
 
 .exit-zoom {
   cursor: pointer;
   display: inline-block;
+  z-index: 5002;
 }
-.zoom-auth-name {
-  display: inline-block;
-  padding: 0.5em 0 0 0.5em;
+
+.real-card {
+  position: relative;
+  min-width: 87vw;
+  border: 0.8px solid #000;
+  max-height: 95vh;
+  z-index: 5001;
+  overflow: scroll;
+  max-width: 50em;
+}
+
+
+.zoom-not-home-pic {
+  padding-top: 1em;
+  min-height: 10em;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 7em;
+  max-height: 35em;
 }

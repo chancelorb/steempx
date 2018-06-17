@@ -58,10 +58,10 @@ class New extends Component {
       `${this.makePermaLink(this.state.post.title)}`,
       this.state.post.title,
       `![](${this.state.post.img_url}) <hr /> <a href="https://steempx.herokuapp.com/">Made With SteemPX</a> <br />![](https://steempx.herokuapp.com/static/media/spLogo.5bfbb7c0.png)`,
-      { tags: ["steempx", "photography", `${this.state.post.tag}`], image:[`${this.state.post.img_url}`], app:'steempx' },
+      { tags: ["steempx", "photography", "photo", "steemit", `${this.state.post.tag}`], image:[`${this.state.post.img_url}`], app:'steempx' },
       (err, result) => {
         if (!err) {
-          this.props.func(this.state.post);
+          // this.props.func(this.state.post);
           this.setState({
             sendLoading: false,
             confirmation: true,
@@ -87,6 +87,11 @@ class New extends Component {
   render() {
     const { title, img_url, key, tag} = this.state.post
     const form = (<div><h1>Create a new post!</h1>
+
+    <div>
+      <p>Upload image <a href='https://imgur.com/upload'>here</a>, or <a href='https://imgsafe.org/'>here</a> and use the url to post</p>
+    </div>
+
     <div>
     <form onSubmit={this.handleSteemSubmit}>
       <label>
@@ -96,6 +101,7 @@ class New extends Component {
           value={title}
           placeholder='Title'
           onChange={this.handleChange}
+          required
           />
       </label><br/>
       <label>
@@ -105,6 +111,7 @@ class New extends Component {
           value={img_url}
           placeholder='Image Url'
           onChange={this.handleChange}
+          required
          />
       </label><br/>
       <label>
@@ -124,6 +131,7 @@ class New extends Component {
          value={key}
          placeholder='Private Key'
          onChange={this.handleChange}
+         required
        />
       </label><br/>
       <button type='submit'>Post</button>
