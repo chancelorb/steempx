@@ -8,29 +8,48 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      user: Object.assign({
+        user_name: "",
+        wif: ""
+      })
     }
     this.checkUser = this.checkUser.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  keyFromPassword() {
+    const wif = steem.auth.toWif(this.state.user.user_name, this.state.user.wif, "posting");
+    const check = steem.auth.verify(this.state.user.user_name, this.state.user.wif)
+    console.log(check, wif)
+  }
+
   handleInputChange(e) {
     const { name, value } = e.target;
-    this.setState({
-      [name]: value
-    });
+    this.setState((prevState) => ({
+			user: {
+				...prevState.user,
+				[name]: value
+			}
+		}))
   }
 
   checkUser(e) {
     e.preventDefault();
-    steem.api.getAccountsAsync([this.state.name], (err, res) => {
-      let check = res[0] ? true : false;
-      check ? (this.props.subFunc(JSON.parse(res[0].json_metadata))) : (console.log('oepsie...'))
-    })
+    // console.log("naam", this.state.user.user_name, "wif", this.state.user.wif)
+    this.keyFromPassword();
+    // steem.api.getAccountsAsync([this.state.name], (err, res) => {
+    //   let check = res[0] ? true : false;
+    //   check ? (this.props.subFunc(JSON.parse(res[0].json_metadata))) : (console.log('oepsie...'))
+    // })
   };
+  componentWillReceiveProps() {
+
+  }
 
   render() {
     let user = this.props.loaded ? this.props.user.profile : "";
+
+    const { user_name, wif } = this.state.user
     let curUser = (this.props.curUser).length > 1 ?
     (<Link to={`/@${this.props.curUser}`}> <img src={user.profile_image} alt="" className='nav-pic'/></Link>)
     :
@@ -39,9 +58,18 @@ class Header extends Component {
         Log in
       </button>
       <div class="dropdown-menu dropdown-menu-right"  aria-labelledby="dropdownMenuButton">
-        <form onSubmit={this.checkUser} className="form-group col-2 user-box dropdown-item">
-        <input placeholder='username' className="form-control" type="text" name='name' onChange={this.handleInputChange}></input>
-      </form>
+        <form onSubmit={this.checkUser} className="form-group col-3 user-box dropdown-item">
+          <label>
+            name
+          <input placeholder='Username' className="form-control" type="text" name='user_name' value={user_name} onChange={this.handleInputChange}></input>
+          </label>
+          <br />
+          <label>
+            PW
+          <input placeholder='Password' className="form-control" type="text" name='wif' value={wif} onChange={this.handleInputChange}></input>
+          </label>
+          <button type='submit'>login</button>
+        </form>
       </div>
     </div>);
     return (

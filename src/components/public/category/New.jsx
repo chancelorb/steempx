@@ -14,7 +14,8 @@ class New extends Component {
       onPic: "false",
       newPosts: [],
       zoomPic: false,
-      curImg: ''
+      curImg: '',
+      count: 0
     }
     this.fetchDiscNew = this.fetchDiscNew.bind(this);
     this.addDefaultSrc = this.addDefaultSrc.bind(this);
@@ -60,13 +61,19 @@ class New extends Component {
         author: maker,
         all: t
       }
-    })
-
+    });
+    // steem.broadcast.vote("5K7JTWwThhpC1R3TVzakYZQGnZzgYKb4bqgi3962w1szREP16Su", "chanceb", "chanceb", "super-long-pic-by-chanceb", 10000, function(err, result) {
+    // 	console.log(err, result);
+    // });
   }
   handleDeZoom() {
     this.setState({
       zoomPic: false
     })
+
+  }
+  checkImgSize(img) {
+    console.log(img[0])
   }
 
 
@@ -74,7 +81,7 @@ class New extends Component {
     this.fetchDiscNew();
   }
   componentWillReceiveProps() {
-    this.fetchDiscNew()
+    this.fetchDiscNew();
   }
 
   render() {
@@ -92,7 +99,7 @@ class New extends Component {
     let check = (news === this.state.newPosts) ? (news.map(t => (
       <div className='post-container' key={t.id}>
         <img onClick={() => {this.handleZoom(JSON.parse(t.json_metadata).image, t.author, t)}} onError={this.addDefaultSrc} src={JSON.parse(t.json_metadata).image} alt="" className='home-pic'/>
-        <div className='row post-container-text'><Link  to={`/user/${t.author}`} >@{t.author}</Link></div>
+        <div className='row post-container-text'><Link  to={`/user/${t.author}`} >@{t.author}</Link></div>{this.checkImgSize(JSON.parse(t.json_metadata).image)}
       </div>
     ))) : (<h1 className='loader'></h1>)
     return (
