@@ -57,6 +57,7 @@ class Postinfo extends Component  {
           })
         } else if (err.cause === "Error") {
           console.log("You already liked this")
+
         }
       }
 
