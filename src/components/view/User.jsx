@@ -30,7 +30,7 @@ class User extends Component {
     console.log("activated")
     steem.api.getAccountsAsync([this.props.match.params.id])
       .then(res => {
-        console.log(res[0].name)
+        console.log(res[0].posting)
         this.setState({
           loading: false,
           view: {...JSON.parse(res[0].json_metadata)},

@@ -14,42 +14,41 @@ class App extends Component {
     super(props);
     this.state = {
       curUser: '',
+      wif: "",
       user: [],
-      loaded: false
+      loaded: false,
+      postKeyForm: ''
     }
     this.handleLogin = this.handleLogin.bind(this);
-    this.createPost = this.createPost.bind(this);
   }
 
   fetchUser() {
-    let curUser = (this.state.curUser).length > 1 ? (
     steem.api.getAccounts([this.state.curUser], (err, resp) => {
-      console.log(resp, "ik ben de ingelogde")
       this.setState ({
+        //for display info
         user : {...JSON.parse(resp[0].json_metadata)},
         loaded : true
       })
-    })) : "";
+    })
+
   };
 
   handleLogin(name) {
     this.setState({
-      curUser: name.profile.name
+      //for actual username
+      curUser: name[0].name
     });
-    this.fetchUser();
+    this.fetchUser()
   }
-  createPost(post) {
-    fetch(`${BASE_URL}api/pic/new`, {
-      method: 'POST',
-      body: JSON.stringify(post),
-      headers: {
-        'content-type': 'application/json'
-      }
+
+  setWif(wif) {
+    this.setState({
+      wif: wif
     })
   }
 
   componentDidMount() {
-    this.fetchUser()
+    // this.fetchUser()
   }
 
   render() {

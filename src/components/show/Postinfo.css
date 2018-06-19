@@ -53,3 +53,15 @@
   min-width: 7em;
   max-height: 35em;
 }
+
+.form-div {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: solid 0.1px #000;
+  position: absolute;
+  margin-top: -1em;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 15em;
+  min-height: 15em;
+  z-index: 5005;
+}

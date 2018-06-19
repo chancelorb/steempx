@@ -66,11 +66,11 @@ class Home extends Component {
 
           <Switch>
 
-            <Route exact path='/new' render={(props) => (<New {...props} theTag={this.state.theTag} /> )} />
-            <Route exact path='/hot' render={(props) => (<Hot {...props} theTag={this.state.theTag} /> )} />
-            <Route exact path='/promoted' render={(props) => (<Promoted {...props} theTag={this.state.theTag}/> )} />
-            <Route exact path='/trending' render={(props) => (<Trending {...props} theTag={this.state.theTag}/> )} />
-            <Route path='/' render={(props) => (<New {...props} theTag={this.state.theTag} /> )} />
+            <Route exact path='/new' render={(props) => (<New {...props} user={this.props.curUser} theTag={this.state.theTag} /> )} />
+            <Route exact path='/hot' render={(props) => (<Hot {...props} user={this.props.curUser} theTag={this.state.theTag} /> )} />
+            <Route exact path='/promoted' render={(props) => (<Promoted {...props} user={this.props.curUser} theTag={this.state.theTag}/> )} />
+            <Route exact path='/trending' render={(props) => (<Trending {...props} user={this.props.curUser} theTag={this.state.theTag}/> )} />
+            <Route path='/' render={(props) => (<New {...props} user={this.props.curUser} theTag={this.state.theTag} /> )} />
 
 
           </Switch>
