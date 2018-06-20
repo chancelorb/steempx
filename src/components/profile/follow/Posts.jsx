@@ -27,7 +27,6 @@ class Posts extends Component {
     this.fetchPosts = this.fetchPosts.bind(this);
     this.addDefaultSrc = this.addDefaultSrc.bind(this);
     this.fetchThisPosts = this.fetchThisPosts.bind(this);
-    this.deleteThisPost = this.deleteThisPost.bind(this);
     this.handleZoom = this.handleZoom.bind(this);
     this.handleDeZoom = this.handleDeZoom.bind(this);
   }
