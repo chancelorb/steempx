@@ -6,10 +6,10 @@
 .home-pic {
   min-height: 10em;
   width: auto;
-  max-width: 35em;
-  min-width: 7em;
-  max-height: 20em;
-  min-height: 20em;
+  max-width: 30em;
+  min-width: 1em;
+  max-height: 15em;
+  min-height: 15em;
 }
 
 .post-container {

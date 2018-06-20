@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-const BASE_URL = "https://mysterious-lowlands-62415.herokuapp.com/";
 
 class Posts extends Component {
   constructor(props) {
@@ -52,16 +51,7 @@ class Posts extends Component {
   }
   //terug tot dat de text hier weg is
   fetchThisPosts(t) {
-    // fetch(`${BASE_URL}api/pic/user/${user}`)
-    //   .then(resp => {
-    //     if (!resp.ok) {
-    //       throw Error('oops: ', resp.message);
-    //     }
-    //     return resp.json();
-    //   }).then(data => this.setState ({
-    //       thisPosts: data.data,
-    //       pxLoaded: true
-    //   })).catch(err => console.log(`error: ${err}`))
+
     console.log(t, "this is from SteemIt")
 
     if (t.category === "steempx") {
@@ -93,22 +83,22 @@ class Posts extends Component {
       </div>
     }
   }
-  deleteThisPost(id) {
-    fetch(`${BASE_URL}api/pic/${id}`, {
-      method: 'DELETE'
-    })
-    .then(resp => {
-      if (!resp.ok) throw new Error(resp.statusMessage);
-      return resp.json();
-    })
-    .then(respBody => {
-      this.setState((prevState, props) => {
-        return {
-          thisPosts: prevState.thisPosts.filter(post => post.id !== id)
-        }
-      })
-    })
-  }
+  // deleteThisPost(id) {
+  //   fetch(`${BASE_URL}api/pic/${id}`, {
+  //     method: 'DELETE'
+  //   })
+  //   .then(resp => {
+  //     if (!resp.ok) throw new Error(resp.statusMessage);
+  //     return resp.json();
+  //   })
+  //   .then(respBody => {
+  //     this.setState((prevState, props) => {
+  //       return {
+  //         thisPosts: prevState.thisPosts.filter(post => post.id !== id)
+  //       }
+  //     })
+  //   })
+  // }
   handleZoom(img, maker, t) {
     // this.setState({
     //   zoomPic: true,

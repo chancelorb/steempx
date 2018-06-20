@@ -56,3 +56,6 @@
   max-width: 4em;
   background-image: url('../../../assets/heart.png');
 }
+.checkbox {
+  box-sizing: border-box;
+}

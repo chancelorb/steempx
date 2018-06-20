@@ -86,7 +86,7 @@ class Postinfo extends Component  {
 
   render() {
     console.log(this.state.wif)
-    const wrongP = (<h3>Password and Username don't match, please try again</h3>);
+    const wrongP = (<h3 className="rood">Password and Username don't match, please try again</h3>);
     const login = (<h1>PLEASE LOG IN FIRST</h1>);
     const Style = {
       overflow: 'scroll',

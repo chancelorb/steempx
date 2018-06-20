@@ -106,8 +106,9 @@ class New extends Component {
         <div className='steempx-posts' >
           <h1 className='muted-title'>NEW</h1>
           <hr />
-
-          {check}
+          <div className = 'checkbox'>
+            {check}
+          </div>
         </div>
 
 
