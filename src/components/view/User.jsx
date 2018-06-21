@@ -81,8 +81,8 @@ class User extends Component {
 
         <Route exact path={`/user/${this.state.viewName}/followers`} render={(props) => (<ViewFollowers {...props} user={this.state.viewName} /> )} />
         <Route exact path={`/user/${this.state.viewName}/following`} render={(props) => (<ViewFollowing {...props} user={this.state.viewName} /> )} />
-        <Route exact path={`/user/${this.state.viewName}/posts`} render={(props) => (<ViewPosts {...props} curUser={this.state.viewName}/> )} />
-        <Route exact path={`/user/${this.state.viewName}`} render={(props) => (<ViewPosts {...props} curUser={this.state.viewName} /> )} />
+        <Route exact path={`/user/${this.state.viewName}/posts`} render={(props) => (<ViewPosts {...props} curUser={this.state.viewName} me={this.props.curUser}/> )} />
+        <Route exact path={`/user/${this.state.viewName}`} render={(props) => (<ViewPosts {...props} curUser={this.state.viewName} me={this.props.curUser}/> )} />
 
 
       </Switch>

@@ -1,0 +1,14 @@
+.for-auth {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  position: absolute;
+  border: solid 0.1px #000;
+  box-sizing: border-box;
+  min-height: 15em;
+  margin-left: 7%;
+  margin-right: 10%;
+  min-width: 80%;
+  margin-top: 2em;
+  z-index: 5005;
+  float: right;
+}
