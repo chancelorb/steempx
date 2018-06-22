@@ -47,7 +47,6 @@ class New extends Component {
           newPosts: this.checkApp(res),
           fetch: true
         });
-        console.log("IK GAGAGAGAGAAAAA!!!")
       })
       .catch(err => {
         console.log('oopsie', err)

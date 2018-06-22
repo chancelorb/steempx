@@ -111,7 +111,7 @@ class AuthForm extends Component {
         {this.state.wrongP && wrongP}
         <label>
           Posting Key
-        <input placeholder='Posting Key' className="form-control" type="text" name='wif' onChange={this.handleInputChange}></input>
+        <input placeholder='Posting Key' className="form-control" type="password" name='wif' onChange={this.handleInputChange}></input>
         </label>
         <br />
 
