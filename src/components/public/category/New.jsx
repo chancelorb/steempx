@@ -24,8 +24,6 @@ class New extends Component {
     this.handleDeZoom = this.handleDeZoom.bind(this);
     this.handleLike = this.handleLike.bind(this);
   }
-  //steemit
-
   checkApp(app) {
     let res = [];
     app.map(i => {
@@ -41,16 +39,16 @@ class New extends Component {
       tag: 'steempx',
       limit: 100
     };
-    steem.api.getDiscussionsByCreatedAsync(query)
-      .then(res => {
+    steem.api.getDiscussionsByCreatedAsync(query, (err, res) => {
+      if(!err) {
         this.setState({
-          newPosts: this.checkApp(res),
+          newPosts: res,
           fetch: true
         });
-      })
-      .catch(err => {
-        console.log('oopsie', err)
-      })
+        console.log(res);
+      }
+      console.log('oopsie', err)
+    })
   }
   addDefaultSrc(ev){
     ev.target.src = 'https://www.torbenrick.eu/blog/wp-content/uploads/2017/03/Broken-windows-theory-Applied-to-organizational-culture.jpg'
@@ -66,7 +64,6 @@ class New extends Component {
         user: this.props.user
       }
     });
-
   }
   handleDeZoom() {
     this.setState({
@@ -81,15 +78,12 @@ class New extends Component {
     })
   }
 
-
   componentDidMount() {
     this.fetchDiscNew();
   }
   componentWillReceiveProps() {
     this.fetchDiscNew();
   }
-
-
 
   render() {
     //steemit
@@ -109,8 +103,6 @@ class New extends Component {
             {check}
           </div>
         </div>
-
-
         {this.state.zoomPic && (<Postinfo func={this.handleDeZoom} likeFunc={this.handleLike} pic={this.state.curImg}/>) }
       </div>
     );
