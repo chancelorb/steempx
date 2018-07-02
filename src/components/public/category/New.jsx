@@ -42,7 +42,7 @@ class New extends Component {
     steem.api.getDiscussionsByCreatedAsync(query, (err, res) => {
       if(!err) {
         this.setState({
-          newPosts: res,
+          newPosts: this.checkApp(res),
           fetch: true
         });
         console.log(res);
